@@ -22,9 +22,10 @@ urlpatterns = patterns('',
 )
 
 # No usar en produccion, servirlos configurando el servidor HTTP
-urlpatterns += patterns('',
-    (r'^archivos-estaticos/(?P<path>.*)$',
-        'django.views.static.serve',
-        {'document_root': settings.STATIC_ROOT, 'show_indexes': True,}),
-)
+urlpatterns += patterns('', (r'^archivos-estaticos/(?P<path>.*)$',
+    'django.views.static.serve',
+    {
+        'document_root': settings.STATIC_ROOT,
+        'show_indexes': True,
+    }),)
 
