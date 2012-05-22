@@ -1,4 +1,4 @@
-from blogs.models import Blog
+from blogs.models import Blogs
 from django.shortcuts import render_to_response
 
 def index(request):
