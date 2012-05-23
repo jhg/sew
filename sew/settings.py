@@ -25,7 +25,7 @@ MEDIA_ROOT = os.path.join(PROJECT_DIR, 'cargas')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = 'cargas/'
+MEDIA_URL = MEDIA_HOST + 'cargas/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -35,7 +35,7 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'estaticos')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = 'estaticos/'
+STATIC_URL = STATIC_HOST + 'estaticos/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
