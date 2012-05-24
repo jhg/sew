@@ -1,0 +1,10 @@
+{% extends "principal.htm" %}
+
+{% block cuerpo %}
+    {{ num_blogs }} blogs
+    <ul>
+    {% for blog in blogs %}
+      <li> <a href="">{{ blog.titulo }}</a>
+    {% endfor %}
+    </ul>
+{% endblock %}
