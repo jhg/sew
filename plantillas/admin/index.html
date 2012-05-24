@@ -1,7 +1,9 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_static %}
 
-{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />{% endblock %}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />
+<script type="text/javascript" src="{% static "js/jquery.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery.easydrag.js" %}"></script>{% endblock %}
 
 {% block coltype %}colMS{% endblock %}
 
@@ -77,4 +79,7 @@
             {% endif %}
     </div>
 </div>
+<script ype="text/javascript">
+    $("div#content-related div.module").easydrag();
+</script>
 {% endblock %}

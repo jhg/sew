@@ -7,8 +7,8 @@ body {
     padding: 0;
     font-size: 12px;
     font-family: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
-    color: #333;
-    background: #fff;
+    color: #003;
+    background: #70bfff;
 }
 
 /* LINKS */
@@ -469,8 +469,11 @@ input[type=text], input[type=password], textarea, select, .vTextField {
 
 .module {
     border: 1px solid #ccc;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    min-width: 500px;
     background: white;
+    position: relative;
+    box-shadow: 3px 4px 5px rgba(0,0,0, 0.5);
 }
 
 .module p, .module ul, .module h3, .module h4, .module dl, .module pre {
@@ -518,7 +521,7 @@ ul.messagelist li {
     margin: 0 0 3px 0;
     border-bottom: 1px solid #ddd;
     color: #666;
-    background: #ffc url(../img/icon_success.gif) 5px .3em no-repeat;
+    background: #cff url(../img/icon_success.gif) 5px .3em no-repeat;
 }
 
 ul.messagelist li.warning{
@@ -536,7 +539,7 @@ ul.messagelist li.error{
     margin: 0 0 3px 0;
     border: 1px solid red;
     color: red;
-    background: #ffc url(../img/icon_error.gif) 5px .3em no-repeat;
+    background: #cff url(../img/icon_error.gif) 5px .3em no-repeat;
 }
 
 ul.errorlist {
@@ -569,15 +572,19 @@ td ul.errorlist li {
 }
 
 .errors {
-    background: #ffc;
+    background: #cff;
 }
 
 .errors input, .errors select, .errors textarea {
     border: 1px solid red;
 }
 
+div.submit-row {
+    box-shadow: 3px 4px 5px rgba(0,0,0, 0.5);
+}
+
 div.system-message {
-    background: #ffc;
+    background: #cff;
     margin: 10px;
     padding: 6px 8px;
     font-size: .8em;
@@ -587,7 +594,7 @@ div.system-message p.system-message-title {
     padding: 4px 5px 4px 25px;
     margin: 0;
     color: red;
-    background: #ffc url(../img/icon_error.gif) 5px .3em no-repeat;
+    background: #cff url(../img/icon_error.gif) 5px .3em no-repeat;
 }
 
 .description {
@@ -625,11 +632,11 @@ div.breadcrumbs {
 }
 
 a.deletelink:link, a.deletelink:visited {
-    color: #CC3434;
+    color: #3434cc;
 }
 
 a.deletelink:hover {
-    color: #993333;
+    color: #333399;
 }
 
 /* OBJECT TOOLS */
@@ -672,29 +679,29 @@ a.deletelink:hover {
     color: white;
     padding: .1em 14px .1em 8px;
     height: 14px;
-    background: #999 url(../img/tool-right.gif) 100% 0 no-repeat;
+    background: #000 url(../img/tool-right.gif) 100% 0 no-repeat;
 }
 
 .object-tools a:hover, .object-tools li:hover a {
-    background: #5b80b2 url(../img/tool-right_over.gif) 100% 0 no-repeat;
+    background: #00205b url(../img/tool-right_over.gif) 100% 0 no-repeat;
 }
 
 .object-tools a.viewsitelink, .object-tools a.golink {
-    background: #999 url(../img/tooltag-arrowright.gif) top right no-repeat;
+    background: #000 url(../img/tooltag-arrowright.gif) top right no-repeat;
     padding-right: 28px;
 }
 
 .object-tools a.viewsitelink:hover, .object-tools a.golink:hover {
-    background: #5b80b2 url(../img/tooltag-arrowright_over.gif) top right no-repeat;
+    background: #00205b url(../img/tooltag-arrowright_over.gif) top right no-repeat;
 }
 
 .object-tools a.addlink {
-    background: #999 url(../img/tooltag-add.gif) top right no-repeat;
+    background: #000 url(../img/tooltag-add.gif) top right no-repeat;
     padding-right: 28px;
 }
 
 .object-tools a.addlink:hover {
-    background: #5b80b2 url(../img/tooltag-add_over.gif) top right no-repeat;
+    background: #00205b url(../img/tooltag-add_over.gif) top right no-repeat;
 }
 
 /* OBJECT HISTORY */
@@ -778,8 +785,8 @@ table#change-history tbody th {
 /* HEADER */
 
 #header {
-    background: #417690;
-    color: #ffc;
+    background: #049;
+    color: #9ff;
     overflow: hidden;
 }
 
@@ -796,7 +803,7 @@ table#change-history tbody th {
     font-size: 18px;
     margin: 8px 0;
     font-weight: normal;
-    color: #f4f379;
+    color: #74f3f9;
 }
 
 #branding h2 {
@@ -804,7 +811,7 @@ table#change-history tbody th {
     font-size: 14px;
     margin: -8px 0 8px 0;
     font-weight: normal;
-    color: #ffc;
+    color: #cff;
 }
 
 #user-tools {
