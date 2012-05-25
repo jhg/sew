@@ -1,6 +1,7 @@
 {% extends "principal.htm" %}
 
 {% block cuerpo %}
+    <h1>No existe {{ host }}{% url blogs-url %}{{ urlblog }}/</h1>
     {% if num_blogs = 1 %}
         Hay 1 blog
     {% else %}
