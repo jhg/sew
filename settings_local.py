@@ -36,8 +36,10 @@ LANGUAGE_CODE = 'es-es'
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'vwz(3e9-zuqf)l-&amp;6srbf7xk*gklc^*ed#=m7=lcq95mkvresz'
 
-MEDIA_HOST = 'http://127.0.0.1:8000/'
+HOST = 'http://127.0.0.1:8000/'
 
-STATIC_HOST = 'http://127.0.0.1:8000/'
+MEDIA_HOST = HOST
+
+STATIC_HOST = HOST
 
 
