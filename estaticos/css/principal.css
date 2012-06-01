@@ -1,0 +1,13 @@
+
+/* Compatibilidad de HTML5 en navegadors antiguos */
+article, section, aside, hgroup, nav,  header, footer, figure, figcaption {
+ display: block;
+}
+
+body
+  {
+    background: #88aaff;
+  }
+
+
+

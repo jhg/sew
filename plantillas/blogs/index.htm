@@ -1,14 +1,19 @@
 {% extends "principal.htm" %}
 
-{% block cuerpo %}
-    {% if num_blogs = 1 %}
-        Hay 1 blog
-    {% else %}
-        Hay {{ num_blogs }} blogs
-    {% endif %}
-    <ul>
-        {% for blog in blogs %}
-            <li> <a href="{% url blogs-url %}{{ blog.url }}">{{ blog.titulo }}</a>
-        {% endfor %}
-    </ul>
+{% block cabecera %}
+{% endblock %}
+
+{% block contenido %}
+    <article>
+        {% if num_blogs = 1 %}
+            Hay 1 blog
+        {% else %}
+            Hay {{ num_blogs }} blogs
+        {% endif %}
+        <ul>
+            {% for blog in blogs %}
+                <li> <a href="{% url blogs-url %}{{ blog.url }}">{{ blog.titulo }}</a>
+            {% endfor %}
+        </ul>
+    </article>
 {% endblock %}

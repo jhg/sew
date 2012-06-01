@@ -1,15 +1,5 @@
-{% extends "principal.htm" %}
+{% extends "blogs/index.htm" %}
 
-{% block cuerpo %}
+{% block cabecera %}
     <h1>No existe {{ host }}{% url blogs-url %}{{ urlblog }}/</h1>
-    {% if num_blogs = 1 %}
-        Hay 1 blog
-    {% else %}
-        Hay {{ num_blogs }} blogs
-    {% endif %}
-    <ul>
-        {% for blog in blogs %}
-            <li> <a href="{% url blogs-url %}{{ blog.url }}">{{ blog.titulo }}</a>
-        {% endfor %}
-    </ul>
 {% endblock %}

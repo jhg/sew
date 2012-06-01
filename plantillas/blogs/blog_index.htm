@@ -1,8 +1,13 @@
-{% extends "principal.htm" %}
+{% extends "blogs/index.htm" %}
 
 {% block titulo %}{{ blog.titulo }}{% endblock %}
 
-{% block cuerpo %}
+{% block cabecera %}
     <h1>{{ blog.titulo }}</h1>
-    <p>{{ blog.descripcion }}</p>
+{% endblock %}
+
+{% block contenido %}
+    <article>
+        <p>{{ blog.descripcion }}</p>
+    <article>
 {% endblock %}
