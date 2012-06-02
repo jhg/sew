@@ -8,6 +8,7 @@ admin.autodiscover()
 from sew.views import index
 
 urlpatterns = patterns('',
+    url(r'', include('social_auth.urls')),
     # Examples:
     # url(r'^$', 'sew.views.home', name='home'),
     # url(r'^sew/', include('sew.foo.urls')),
