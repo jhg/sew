@@ -579,7 +579,7 @@ td ul.errorlist li {
     border: 1px solid red;
 }
 
-.login div#container, div form div div.submit-row {
+div form div div.submit-row {
     box-shadow: 3px 4px 5px rgba(0,0,0, 0.5);
 }
 
