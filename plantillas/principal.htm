@@ -1,25 +1,23 @@
 {% load i18n static %}<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>{% block titulo %}SEW{% endblock %}</title>
-        <link rel="stylesheet" type="text/css" href="{% static "css/principal.css" %}" />
-        {% block encabezado %}{% endblock %}
-    </head>
-    <body>
-        {% block cuerpo %}
-        <header>
-            {% block cabecera %}
-                En construccion
-            {% endblock %}
-        </header>
-        {% block contenido %}
-        {% endblock %}
-        <footer>
-            {% block pie %}
-                <img scr="{% static "img/sew_logo_88x31.png" %}"></img>
-            {% endblock %}
-        </footer>
-        {% endblock %}
-    </body>
-</html>
+<html><head>
+  <meta charset="utf-8">
+  <title>{% block titulo %}SEW{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{% static "css/principal.css" %}" />
+  {% block encabezado %}{% endblock %}
+</head>
+<body>
+  {% block cuerpo %}
+  <header>
+    {% block cabecera %}
+    En construccion
+    {% endblock %}
+  </header>
+  {% block contenido %}
+  {% endblock %}
+  <footer>
+    {% block pie %}
+    <img scr="{% static "img/sew_logo_88x31.png" %}"></img>
+    {% endblock %}
+  </footer>
+  {% endblock %}
+</body></html>
