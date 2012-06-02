@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User, Group
 
+
 class Blog(models.Model):
     titulo = models.CharField(max_length=64, default="", blank=False)
     # Fragmento de URL que seguira a la url de blogs e identifica este blog
