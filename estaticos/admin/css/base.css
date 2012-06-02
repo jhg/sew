@@ -579,8 +579,12 @@ td ul.errorlist li {
     border: 1px solid red;
 }
 
-div.submit-row {
+.login div#container, div form div div.submit-row {
     box-shadow: 3px 4px 5px rgba(0,0,0, 0.5);
+}
+
+div form div.submit-row {
+    box-shadow: 0px 0px 0px rgba(0,0,0, 0.0);
 }
 
 div.system-message {
