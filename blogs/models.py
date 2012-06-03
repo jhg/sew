@@ -28,7 +28,7 @@ class Articulo(models.Model):
     colectivos = models.ManyToManyField(Group, blank=True)
     creado = models.DateTimeField(auto_now_add=True)
     modificado = models.DateTimeField(auto_now=True)
-    publicacion = models.DateTimeField(blank=True)
+    publicacion = models.DateTimeField(blank=False)
     def __unicode__(self):
         return self.titulo
 

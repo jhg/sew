@@ -10,7 +10,7 @@ def index(request):
 def blog(request, urlblog):
     try:
         blog = Blog.objects.get(url=urlblog)
-        articulos = blog.articulo_set.all()
+        articulos = blog.articulo_set.filter(publicado=True).order_by("publicacion").reverse()
         return render_to_response('blogs/blog_index.htm', locals())
     except:
         blogs = Blog.objects.all()
