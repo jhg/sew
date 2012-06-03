@@ -1,3 +1,4 @@
+#-*- coding: UTF-8 -*-
 import os
 
 PROJECT_DIR = os.path.realpath(os.path.dirname(__file__))
