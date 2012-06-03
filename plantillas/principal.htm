@@ -13,6 +13,9 @@
     {% endblock %}
   </header>
   {% block contenido %}
+  <article>
+    <a href="{% url socialauth_begin 'twitter' %}">Login con Twitter</a>
+  </article>
   {% endblock %}
   <footer>
     {% block pie %}
