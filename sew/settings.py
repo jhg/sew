@@ -125,6 +125,7 @@ LOGGING = {
 
 INSTALLED_APPS = (
     'sew',
+    'paginacionhc',
     'south',
     'social_auth',
     'django.contrib.auth',
