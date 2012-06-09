@@ -1,5 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
+from django.template import Context, Template
+from django.http import HttpResponse
 from settings_local import HOST
 from blogs.models import Blog
 
@@ -23,7 +25,9 @@ def blog(request, urlblog):
             articulos = paginacion.page(1)
         except EmptyPage:
             articulos = paginacion.page(paginacion.num_pages)
-        return render_to_response('blogs/blog_index.htm', locals())
+        # Usamos la propia plantilla del blog
+        plantilla = Template(blog.plantilla)
+        return HttpResponse(plantilla.render(Context(locals())))
     except:
         blogs = Blog.objects.all()
         num_blogs = len(blogs)

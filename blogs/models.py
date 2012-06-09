@@ -1,7 +1,11 @@
-from django.db import models
 from django.contrib.auth.models import User, Group
+from settings_local import PROJECT_DIR
+from django.db import models
 
 
+# Abrimos el archivo de la plantilla predeterminada de los blogs
+plantilla_predeterminada = open(PROJECT_DIR+"/plantillas/blogs/blog_index.htm",
+                                "r")
 class Blog(models.Model):
     titulo = models.CharField(max_length=64, default="", blank=False)
     # Fragmento de URL que seguira a la url de blogs e identifica este blog
@@ -14,13 +18,14 @@ class Blog(models.Model):
     articulos_por_pagina = models.IntegerField(default=1, blank=False)
     # Plantilla de 8KB
     plantilla = models.TextField(max_length=8192,
-        default="<html>\n<head></head>\n<body></body>\n</html>",
+        default=plantilla_predeterminada.read(), # La plantilla predeterminada
         blank=False)
     # Autores (individuales) y colectivo de autores (todos los del grupo)
     autores = models.ManyToManyField(User, blank=True)
     colectivos = models.ManyToManyField(Group, blank=True)
     def __unicode__(self):
         return self.titulo
+plantilla_predeterminada.close() # Cerramos el archivo
 
 class Articulo(models.Model):
     # Blogs a los que pertenece el articulo
