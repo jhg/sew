@@ -19,13 +19,19 @@
 {% block pie %}
   <div class="paginacion">
     {% if articulos.has_previous %}
-      <a href="?pagina={{ articulos.previous_page_number }}">anterior</a>
+      <a href="?pagina=1">inicio</a>
+      {% for anterior in anteriores_pag %}
+        <a href="?pagina={{ anterior }}">{{ anterior }}</a>
+      {% endfor %}
     {% endif %}
-    <span class="current">
-      pagina {{ articulos.number }} de {{ articulos.paginator.num_pages }}
+    <span class="pagina-actual">
+      {{ articulos.number }}
     </span>
     {% if articulos.has_next %}
-      <a href="?pagina={{ articulos.next_page_number }}">siguiente</a>
+      {% for posterior in posteriores_pag %}
+        <a href="?pagina={{ posterior }}">{{ posterior }}</a>
+      {% endfor %}
+      <a href="?pagina={{ articulos.paginator.num_pages }}">final</a>
     {% endif %}
   </div>
 {% endblock %}

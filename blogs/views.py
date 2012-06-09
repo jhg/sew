@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from paginacionhc.PaginacionMejorada import accesos_directos_rango
 from django.shortcuts import render_to_response
 from django.template import Context, Template
 from django.http import HttpResponse
@@ -18,7 +19,9 @@ def blog(request, urlblog):
         articulos = articulos.order_by("publicacion").reverse()
         # Paginacion de los articulos
         paginacion = Paginator(articulos, blog.articulos_por_pagina)
-        pagina = request.GET.get('pagina')
+        pagina = int(request.GET.get('pagina'))
+        anteriores_pag, posteriores_pag = accesos_directos_rango(pagina,
+            paginacion.num_pages, blog.accesos_directos_paginacion)
         try:
             articulos = paginacion.page(pagina)
         except PageNotAnInteger:

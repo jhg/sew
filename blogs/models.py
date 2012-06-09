@@ -16,6 +16,7 @@ class Blog(models.Model):
     creado = models.DateTimeField(auto_now_add=True)
     modificado = models.DateTimeField(auto_now=True)
     articulos_por_pagina = models.IntegerField(default=1, blank=False)
+    accesos_directos_paginacion = models.IntegerField(default=3, blank=False)
     # Plantilla de 8KB
     plantilla = models.TextField(max_length=8192,
         default=plantilla_predeterminada.read(), # La plantilla predeterminada
