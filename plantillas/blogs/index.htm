@@ -12,7 +12,9 @@
         {% endif %}
         <ul>
             {% for blog in blogs %}
-                <li> <a href="{% url blogs-url %}{{ blog.url }}/">{{ blog.titulo }}</a>
+                <li>
+                  <a href="{% url blogs-url %}{{ blog.url }}/">{{ blog.titulo }}</a>
+                </li>
             {% endfor %}
         </ul>
     </article>

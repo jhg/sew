@@ -1,3 +1,4 @@
+#-*- coding: UTF-8 -*-
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from paginacionhc.PaginacionMejorada import accesos_directos_rango
 from django.shortcuts import render_to_response

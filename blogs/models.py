@@ -1,3 +1,4 @@
+#-*- coding: UTF-8 -*-
 from django.contrib.auth.models import User, Group
 from settings_local import PROJECT_DIR
 from django.db import models
