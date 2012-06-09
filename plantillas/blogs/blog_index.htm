@@ -15,3 +15,17 @@
   <article>
   {% endfor %}
 {% endblock %}
+
+{% block pie %}
+  <div class="paginacion">
+    {% if articulos.has_previous %}
+      <a href="?pagina={{ articulos.previous_page_number }}">anterior</a>
+    {% endif %}
+    <span class="current">
+      pagina {{ articulos.number }} de {{ articulos.paginator.num_pages }}
+    </span>
+    {% if articulos.has_next %}
+      <a href="?pagina={{ articulos.next_page_number }}">siguiente</a>
+    {% endif %}
+  </div>
+{% endblock %}

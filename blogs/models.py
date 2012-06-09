@@ -11,6 +11,11 @@ class Blog(models.Model):
     descripcion = models.TextField(max_length=256, default="", blank=True)
     creado = models.DateTimeField(auto_now_add=True)
     modificado = models.DateTimeField(auto_now=True)
+    articulos_por_pagina = models.IntegerField(default=1, blank=False)
+    # Plantilla de 8KB
+    plantilla = models.TextField(max_length=8192,
+        default="<html>\n<head></head>\n<body></body>\n</html>",
+        blank=False)
     # Autores (individuales) y colectivo de autores (todos los del grupo)
     autores = models.ManyToManyField(User, blank=True)
     colectivos = models.ManyToManyField(Group, blank=True)
