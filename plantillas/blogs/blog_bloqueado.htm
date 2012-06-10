@@ -1,0 +1,9 @@
+{% extends "blogs/index.htm" %}
+
+{% block cabecera %}
+    <h1>Blog bloqueado</h1>
+    <p>
+      El blog "{{ blog.titulo|lower }}" en
+      {{ host }}{% url blogs-url %}{{ urlblog }}/ esta bloqueado
+    </p>
+{% endblock %}
