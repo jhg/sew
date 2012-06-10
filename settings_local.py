@@ -15,7 +15,7 @@ DATABASES = {
         # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'ENGINE': 'django.db.backends.sqlite3',
         # Or path to database file if using sqlite3.
-        'NAME': 'sew.sqlite',
+        'NAME': PROJECT_DIR+'/sew.sqlite', #Usa PROJECT_DIR+'nombre' para SQLite
         # Not used with sqlite3.
         'USER': '',
         # Not used with sqlite3.
@@ -110,12 +110,12 @@ LANGUAGE_CODE = 'es-es'
 SECRET_KEY = 'vwz(3e9-zuqf)l-&amp;6srbf7xk*gklc^*ed#=m7=lcq95mkvresz'
 
 # Host donde esta alojado SEW
-HOST = 'http://127.0.0.1:8000/'
+HOST = '127.0.0.1:8000'
 
 # Alojamiento de los archivos subidos
-MEDIA_HOST = HOST
+MEDIA_HOST = 'http://'+HOST+'/'
 
 # Alojamiento de los archivos estaticos
-STATIC_HOST = HOST
+STATIC_HOST = 'http://'+HOST+'/'
 
 
