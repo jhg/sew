@@ -5,8 +5,9 @@ from django.db import models
 
 
 # Abrimos el archivo de la plantilla predeterminada de los blogs
-plantilla_predeterminada = open(PROJECT_DIR+"/plantillas/blogs/blog_index.htm",
-                                "r")
+plantilla_predeterminada = open(PROJECT_DIR
+                              +"/plantillas/blogs/plantilla_predeterminada.htm",
+                              "r")
 class Blog(models.Model):
     titulo = models.CharField(max_length=64, default="", blank=False)
     # Fragmento de URL que seguira a la url de blogs e identifica este blog

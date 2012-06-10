@@ -30,7 +30,8 @@ def blog(request, urlblog):
         except EmptyPage:
             articulos = paginacion.page(paginacion.num_pages)
         # Usamos la propia plantilla del blog
-        plantilla = Template('{% extends "blogs/index.htm" %}\n'+blog.plantilla)
+        plantilla = Template('{% extends "blogs/blog_index.htm" %}\n'
+            +blog.plantilla)
         return HttpResponse(plantilla.render(Context(locals())))
     except:
         blogs = Blog.objects.all()
