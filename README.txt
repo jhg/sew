@@ -9,6 +9,7 @@ Sugerencias:
  Instalación con Pypi recomendada:
  - django-extensions
  Instalación del paquete python en sus sistema recomendada:
+ - python-pip
  - pygraphviz
 
 
