@@ -28,6 +28,7 @@ class Blog(models.Model):
     autores = models.ManyToManyField(User, blank=True)
     colectivos = models.ManyToManyField(Group, blank=True)
     def save(self, *args, **kwargs):
+        # NOTA: mejorar sistemas de URLs amigables
         self.url = slughifi(self.url)
         super(Blog, self).save(*args, **kwargs)
     def __unicode__(self):
@@ -49,6 +50,7 @@ class Articulo(models.Model):
     modificado = models.DateTimeField(auto_now=True)
     publicacion = models.DateTimeField(blank=False)
     def save(self, *args, **kwargs):
+        # NOTA: mejorar sistemas de URLs amigables
         if self.url == "":
             self.url = slughifi(self.titulo+'-'+unicode(self.creado)[0:10])
         else:
