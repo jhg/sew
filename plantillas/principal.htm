@@ -14,7 +14,8 @@
   </header>
   {% block contenido %}
   <article>
-    <a href="{% url socialauth_begin 'twitter' %}">Login con Twitter</a>
+    <a href="{% url socialauth_begin 'twitter' %}">Login con Twitter</a><br/>
+    <a href="{% url blogs-url %}">Blogs alojados (NO requiere login)</a>
   </article>
   {% endblock %}
   <footer>
