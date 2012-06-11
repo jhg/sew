@@ -1,35 +1,45 @@
 {% block titulo %}{{ blog.titulo }}{% endblock %}
 
 {% block cabecera %}
-  <h1>{{ blog.titulo }}</h1>
+  <h1>
+    <a href="{% url blogs-url %}{{ blog.url }}/">
+      {{ blog.titulo }}
+    </a>
+  </h1>
   <p>{{ blog.descripcion }}</p>
 {% endblock %}
 
 {% block contenido %}
   {% for articulo in articulos %}
   <article>
-    <h2>{{ articulo.titulo }}</h2>
+    <h2>
+      <a href="{% url blogs-url %}{{ blog.url }}/{{ articulo.url }}/">
+        {{ articulo.titulo }}
+      </a>
+    </h2>
     <p>{{ articulo.contenido }}</p>
   <article>
   {% endfor %}
 {% endblock %}
 
 {% block pie %}
-  <div class="paginacion">
-    {% if articulos.has_previous %}
-      <a href="?pagina=1">inicio</a>
-      {% for anterior in anteriores_pag %}
-        <a href="?pagina={{ anterior }}">{{ anterior }}</a>
-      {% endfor %}
-    {% endif %}
-    <span class="pagina-actual">
-      {{ articulos.number }}
-    </span>
-    {% if articulos.has_next %}
-      {% for posterior in posteriores_pag %}
-        <a href="?pagina={{ posterior }}">{{ posterior }}</a>
-      {% endfor %}
-      <a href="?pagina={{ articulos.paginator.num_pages }}">final</a>
-    {% endif %}
-  </div>
+  {% block paginacion %}
+    <div class="paginacion">
+      {% if articulos.has_previous %}
+        <a href="?pagina=1">inicio</a>
+        {% for anterior in anteriores_pag %}
+          <a href="?pagina={{ anterior }}">{{ anterior }}</a>
+        {% endfor %}
+      {% endif %}
+      <span class="pagina-actual">
+        {{ articulos.number }}
+      </span>
+      {% if articulos.has_next %}
+        {% for posterior in posteriores_pag %}
+          <a href="?pagina={{ posterior }}">{{ posterior }}</a>
+        {% endfor %}
+        <a href="?pagina={{ articulos.paginator.num_pages }}">final</a>
+      {% endif %}
+    </div>
+  {% endblock %}
 {% endblock %}

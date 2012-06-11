@@ -40,7 +40,7 @@ class Articulo(models.Model):
     blog = models.ManyToManyField(Blog)
     titulo = models.CharField(max_length=128, default="", blank=False)
     # Fragmento de URL que seguira a la url del blog e identifica este articulo
-    url = models.SlugField(max_length=512, default="", unique=False, blank=True)
+    url = models.SlugField(max_length=512, default="", unique=True, blank=True)
     contenido = models.TextField(default="", blank=False)
     publicado = models.BooleanField(default=False)
     bloqueado = models.BooleanField(default=False)
@@ -52,7 +52,8 @@ class Articulo(models.Model):
     def save(self, *args, **kwargs):
         # NOTA: mejorar sistemas de URLs amigables
         if self.url == "":
-            self.url = slughifi(self.titulo+'-'+unicode(self.creado)[0:10])
+            self.url = slughifi(self.titulo + '-' +
+                                unicode(self.publicacion)[0:10])
         else:
             self.url = slughifi(self.url)
         super(Articulo, self).save(*args, **kwargs)
