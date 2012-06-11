@@ -17,7 +17,7 @@
         {{ articulo.titulo }}
       </a>
     </h2>
-    <p>{{ articulo.contenido }}</p>
+    <p>{{ articulo.contenido|safe }}</p>
   <article>
   {% endfor %}
 {% endblock %}
