@@ -1,0 +1,40 @@
+WSGIPythonPath home/ubuntu/sew
+<VirtualHost *:80>
+	ServerAdmin jhg@jhgjesus.tk
+
+Alias /robots.txt /home/ubuntu/sew/estatico/robots.txt
+Alias /favicon.ico /home/ubuntu/sew/estatico/img/favicon.ico
+
+
+Alias /multimedia/ /home/ubuntu/sew/multimedia/
+Alias /estatico/ /home/ubuntu/sew/estatico/
+
+<Directory /home/ubuntu/sew/estatico>
+Order deny,allow
+Allow from all
+</Directory>
+
+<Directory /home/ubuntu/sew/multimedia>
+Order deny,allow
+Allow from all
+</Directory>
+
+WSGIScriptAlias / /home/ubuntu/sew/sew/wsgi.py
+
+<Directory /home/ubuntu/sew/sew>
+<Files wsgi.py>
+Order allow,deny
+Allow from all
+</Files>
+</Directory>
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+
+</VirtualHost>
