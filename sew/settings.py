@@ -137,6 +137,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django_extensions',
+    'chronograph',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'blogs',
