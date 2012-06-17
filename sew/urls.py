@@ -16,7 +16,8 @@ urlpatterns = patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    url(r'^admin/chronograph/job/(?P<pk>\d+)/run/$', 'chronograph.views.job_run', name="admin_chronograph_job_run"),
+    url(r'^admin/chronograph/job/(?P<pk>\d+)/run/$',
+        'chronograph.views.job_run', name="admin_chronograph_job_run"),
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^blog/', include('blogs.urls')),
@@ -30,4 +31,3 @@ urlpatterns += patterns('', (r'^estaticos/(?P<path>.*)$',
         'document_root': settings.STATIC_ROOT,
         'show_indexes': True,
     }),)
-

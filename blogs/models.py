@@ -7,8 +7,10 @@ from sew.slughifi import slughifi
 
 # Abrimos el archivo de la plantilla predeterminada de los blogs
 plantilla_predeterminada = open(PROJECT_DIR
-                              +"/plantillas/blogs/plantilla_predeterminada.htm",
-                              "r")
+                           + "/plantillas/blogs/plantilla_predeterminada.htm",
+                           "r")
+
+
 class Blog(models.Model):
     titulo = models.CharField(max_length=64, default="", blank=False)
     # Fragmento de URL que seguira a la url de blogs e identifica este blog
@@ -22,18 +24,21 @@ class Blog(models.Model):
     accesos_directos_paginacion = models.IntegerField(default=3, blank=False)
     # Plantilla de 8KB
     plantilla = models.TextField(max_length=8192,
-        default=plantilla_predeterminada.read(), # La plantilla predeterminada
+        default=plantilla_predeterminada.read(),  # La plantilla predeterminada
         blank=True)
     # Autores (individuales) y colectivo de autores (todos los del grupo)
     autores = models.ManyToManyField(User, blank=True)
     colectivos = models.ManyToManyField(Group, blank=True)
+
     def save(self, *args, **kwargs):
         # NOTA: mejorar sistemas de URLs amigables
         self.url = slughifi(self.url)
         super(Blog, self).save(*args, **kwargs)
+
     def __unicode__(self):
         return self.titulo
-plantilla_predeterminada.close() # Cerramos el archivo
+plantilla_predeterminada.close()  # Cerramos el archivo
+
 
 class Articulo(models.Model):
     # Blogs a los que pertenece el articulo
@@ -49,6 +54,7 @@ class Articulo(models.Model):
     creado = models.DateTimeField(auto_now_add=True)
     modificado = models.DateTimeField(auto_now=True)
     publicacion = models.DateTimeField(blank=False)
+
     def save(self, *args, **kwargs):
         # NOTA: mejorar sistemas de URLs amigables
         if self.url == "":
@@ -57,8 +63,10 @@ class Articulo(models.Model):
         else:
             self.url = slughifi(self.url)
         super(Articulo, self).save(*args, **kwargs)
+
     def __unicode__(self):
         return self.titulo
+
 
 class Comentario(models.Model):
     articulo = models.ForeignKey(Articulo)
@@ -67,6 +75,6 @@ class Comentario(models.Model):
     texto = models.TextField(max_length=256, default="", blank=False)
     creado = models.DateTimeField(auto_now_add=True)
     moderado = models.BooleanField(default=False)
+
     def __unicode__(self):
         return self.texto
-

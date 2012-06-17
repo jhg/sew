@@ -7,24 +7,28 @@ from django.http import HttpResponse
 from settings_local import HOST
 from blogs.models import Blog
 
+
 def blogs(plantilla):
     blogs = Blog.objects.filter(publicado=True, bloqueado=False)
     num_blogs = len(blogs)
     host = HOST.strip("/")
     return render_to_response(plantilla, locals())
 
+
 def index_blog(request):
     return blogs('blogs/index.htm')
-
 # NOTA: Optimizar y refactorizar todo el código de este archivo
+
 
 def blog(request, urlblog):
     try:
-        blog = Blog.objects.get(url=urlblog) #Encontramos el blog por su url
+        blog = Blog.objects.get(url=urlblog)  # Encontramos el blog por su url
     except:
         return blogs('blogs/blog_inexistente.htm')
-    if blog.bloqueado: return blogs('blogs/blog_bloqueado.htm')
-    if not blog.publicado: return blogs('blogs/blog_inexistente.htm')
+    if blog.bloqueado:
+        return blogs('blogs/blog_bloqueado.htm')
+    if not blog.publicado:
+        return blogs('blogs/blog_inexistente.htm')
     # Extraemos los articulos publicados en el blog y los ordenamos
     articulos = blog.articulo_set.filter(publicado=True)
     articulos = articulos.order_by("publicacion").reverse()
@@ -44,16 +48,19 @@ def blog(request, urlblog):
         articulos = paginacion.page(paginacion.num_pages)
     # Usamos la propia plantilla del blog
     plantilla = Template('{% extends "blogs/blog_index.htm" %}\n'
-        +blog.plantilla)
+        + blog.plantilla)
     return HttpResponse(plantilla.render(Context(locals())))
+
 
 def articulo_blog(request, urlblog, urlarticulo):
     try:
-        blog = Blog.objects.get(url=urlblog) #Encontramos el blog por su url
+        blog = Blog.objects.get(url=urlblog)  # Encontramos el blog por su url
     except:
         return blogs('blogs/blog_inexistente.htm')
-    if blog.bloqueado: return blogs('blogs/blog_bloqueado.htm')
-    if not blog.publicado: return blogs('blogs/blog_inexistente.htm')
+    if blog.bloqueado:
+        return blogs('blogs/blog_bloqueado.htm')
+    if not blog.publicado:
+        return blogs('blogs/blog_inexistente.htm')
     # Extraemos el articulo
     try:
         articulos = blog.articulo_set.filter(publicado=True, url=urlarticulo)
@@ -61,7 +68,6 @@ def articulo_blog(request, urlblog, urlarticulo):
         return blogs('blogs/blog_inexistente.htm')
     # Usamos la propia plantilla del blog
     plantilla = Template('{% extends "blogs/blog_index.htm" %}'
-        +'{% block paginacion %}{% endblock %}\n'
-        +blog.plantilla)
+        + '{% block paginacion %}{% endblock %}\n'
+        + blog.plantilla)
     return HttpResponse(plantilla.render(Context(locals())))
-
