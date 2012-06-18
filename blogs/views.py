@@ -8,7 +8,7 @@ from settings_local import HOST
 from blogs.models import Blog
 
 
-def blogs(plantilla):
+def blogs(plantilla, urlblog="", urlarticulo=""):
     blogs = Blog.objects.filter(publicado=True, bloqueado=False)
     num_blogs = len(blogs)
     host = HOST.strip("/")
@@ -24,11 +24,11 @@ def blog(request, urlblog):
     try:
         blog = Blog.objects.get(url=urlblog)  # Encontramos el blog por su url
     except:
-        return blogs('blogs/blog_inexistente.htm')
+        return blogs('blogs/blog_inexistente.htm', urlblog)
     if blog.bloqueado:
-        return blogs('blogs/blog_bloqueado.htm')
+        return blogs('blogs/blog_bloqueado.htm', urlblog)
     if not blog.publicado:
-        return blogs('blogs/blog_inexistente.htm')
+        return blogs('blogs/blog_inexistente.htm', urlblog)
     # Extraemos los articulos publicados en el blog y los ordenamos
     articulos = blog.articulo_set.filter(publicado=True)
     articulos = articulos.order_by("publicacion").reverse()
@@ -56,18 +56,18 @@ def articulo_blog(request, urlblog, urlarticulo):
     try:
         blog = Blog.objects.get(url=urlblog)  # Encontramos el blog por su url
     except:
-        return blogs('blogs/blog_inexistente.htm')
+        return blogs('blogs/blog_inexistente.htm', urlblog)
     if blog.bloqueado:
-        return blogs('blogs/blog_bloqueado.htm')
+        return blogs('blogs/blog_bloqueado.htm', urlblog)
     if not blog.publicado:
-        return blogs('blogs/blog_inexistente.htm')
+        return blogs('blogs/blog_inexistente.htm', urlblog)
     # Extraemos el articulo
-    try:
-        articulos = blog.articulo_set.filter(publicado=True, url=urlarticulo)
-    except:
-        return blogs('blogs/blog_inexistente.htm')
+    articulos = blog.articulo_set.filter(publicado=True, url=urlarticulo)
+    if articulos.count() == 0:
+        return blogs('blogs/blog_inexistente.htm', urlblog, urlarticulo)
     # Usamos la propia plantilla del blog
-    plantilla = Template('{% extends "blogs/blog_index.htm" %}'
-        + '{% block paginacion %}{% endblock %}\n'
-        + blog.plantilla)
+    plantilla = Template('{% extends "blogs/blog_index.htm" %}\n'
+        + '{% block encabezado %}{% endblock %}\n'
+        + blog.plantilla
+        + '{% block paginacion %}{% endblock %}\n')
     return HttpResponse(plantilla.render(Context(locals())))
