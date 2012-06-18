@@ -48,6 +48,7 @@ def blog(request, urlblog):
         articulos = paginacion.page(paginacion.num_pages)
     # Usamos la propia plantilla del blog
     plantilla = Template('{% extends "blogs/blog_index.htm" %}\n'
+        + '{% block encabezado %}{% endblock %}'
         + blog.plantilla)
     return HttpResponse(plantilla.render(Context(locals())))
 

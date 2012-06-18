@@ -1,6 +1,9 @@
 {% extends "blogs/index.htm" %}
 {% block titulo %}{{ blog.titulo }}{% endblock %}
 
+{% block encabezado %}
+{% endblock %}
+
 {% block cabecera %}
   <h1>
     <a href="{% url blogs-url %}{{ blog.url }}/">

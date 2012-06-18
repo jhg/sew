@@ -7,19 +7,20 @@
 </head>
 <body>
   {% block cuerpo %}
-  <header>
+  <header class="wrap-foot-down">
     {% block cabecera %}
     En construccion
     {% endblock %}
   </header>
   {% block contenido %}
-  <article>
+  <article class="wrap-foot-down">
     <a href="{% url socialauth_begin 'twitter' %}">Login con Twitter</a><br/>
     <a href="{% url blogs-url %}">Blogs alojados (NO requiere login)</a>
   </article>
   {% endblock %}
-  <footer>
+  <footer class="wrap-foot-down">
     {% block pie %}
+    <small>Funcionando con</small><br />
     <img src="{% static "img/sew_logo_88x31.png" %}" alt="Logo de SEW" />
     {% endblock %}
   </footer>

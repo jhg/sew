@@ -1,13 +1,59 @@
 
 /* Compatibilidad de HTML5 en navegadors antiguos */
 article, section, aside, hgroup, nav,  header, footer, figure, figcaption {
- display: block;
+ display:           block;
 }
 
-body
+html, body
   {
-    background: #88aaff;
+    background:     #88aaff;
+    margin:         0%;
+    width:          100%;
+    height:         100%;
   }
 
+header
+  {
+    width:          100%;
+    min-height:     4em;
+    background:     rgba(0,0,0, 0.4);
+    margin:         0%;
+    padding:        0%;
+  }
+
+article
+  {
+  }
+
+footer
+  {
+    width:          100%;
+    min-height:     2em;
+    background:     rgba(0,0,0, 0.4);
+    margin:         0%;
+    padding:        0%;
+    text-align:     center;
+  }
+
+
+/* Wrap foot down */
+
+header.wrap-foot-down
+  {
+    min-height:     8% !important;
+  }
+
+article.wrap-foot-down
+  {
+    min-height:     85% !important;
+    height:         auto !important;
+    margin:         0px !important;
+    padding:        0px !important;
+  }
+
+footer.wrap-foot-down
+  {
+    min-height:     7% !important;
+  }
 
 
