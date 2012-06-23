@@ -44,7 +44,7 @@
 
 def accesos_directos_rango(actual, total, numero_accesos):
     if numero_accesos < 1:
-        numero_accesos = 1
+        return [[],[]]
     inicial = actual - numero_accesos
     if inicial < 1:
         inicial = 1
