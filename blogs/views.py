@@ -67,5 +67,6 @@ def articulo_blog(request, urlblog, urlarticulo):
         return blogs('blogs/blog_inexistente.htm', urlblog, urlarticulo)
     # Usamos la propia plantilla del blog
     plantilla = Template('{% extends "blogs/blog_index.htm" %}\n'
+        + "{% load i18n static %}\n"
         + blog.plantilla)
     return HttpResponse(plantilla.render(Context(locals())))
