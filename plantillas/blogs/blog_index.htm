@@ -29,9 +29,11 @@
 
 {% block pie %}
   {% block paginacion %}
+    {% if articulos.has_other_pages %}
     <div class="paginacion">
       {% if articulos.has_previous %}
         <a href="?pagina=1">inicio</a>
+        <a href="?pagina={{ articulos.previous_page_number }}">&lt;</a>
         {% for anterior in anteriores_pag %}
           <a href="?pagina={{ anterior }}">{{ anterior }}</a>
         {% endfor %}
@@ -43,8 +45,10 @@
         {% for posterior in posteriores_pag %}
           <a href="?pagina={{ posterior }}">{{ posterior }}</a>
         {% endfor %}
+        <a href="?pagina={{ articulos.next_page_number }}">&gt;</a>
         <a href="?pagina={{ articulos.paginator.num_pages }}">final</a>
       {% endif %}
     </div>
+    {% endif %}
   {% endblock %}
 {% endblock %}
