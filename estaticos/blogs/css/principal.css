@@ -48,24 +48,44 @@ header
   {
     width:          100%;
     min-height:     10%;
-    background:     rgba(0,0,0, 0.4);
+    background:     rgba(0,0,0, 0.2);
     margin:         0%;
     padding:        0%;
   }
 
 section
   {
-    min-height:     85%;
+    width:          100%;
+    min-height:     83.25%;
     height:         auto;
     margin:         0px;
     padding:        0px;
+  }
+
+article
+  {
+    background:     rgba(255,255,255, 0.2);
+    width:          96.5%;
+    max-width:      96.5%;
+    resize:         vertical;/*both;*/
+    min-height:     25px;
+    overflow:       auto;
+    border:         outset 0.2em rgba(0,0,0, 0.3);
+    margin:         1%;
+    padding:        0.5%;
+    box-shadow:     3px 4px 2px 1px rgba(0,0,0, 0.5);
+  }
+
+.no-redimensionar
+  {
+    resize:         none;
   }
 
 footer
   {
     width:          100%;
     min-height:     5%;
-    background:     rgba(0,0,0, 0.4);
+    background:     rgba(0,0,0, 0.2);
     margin:         0%;
     padding:        0%;
     text-align:     center;

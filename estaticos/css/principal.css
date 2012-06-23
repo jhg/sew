@@ -54,7 +54,7 @@ header
   {
     width:          100%;
     min-height:     4em;
-    background:     rgba(0,0,0, 0.4);
+    background:     rgba(0,0,0, 0.3);
     margin:         0%;
     padding:        0%;
   }
@@ -67,7 +67,7 @@ footer
   {
     width:          100%;
     min-height:     2em;
-    background:     rgba(0,0,0, 0.4);
+    background:     rgba(0,0,0, 0.3);
     margin:         0%;
     padding:        0%;
     text-align:     center;
