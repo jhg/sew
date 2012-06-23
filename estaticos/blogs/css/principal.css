@@ -1,8 +1,40 @@
-
 /* Compatibilidad de HTML5 en navegadors antiguos */
 article, section, aside, hgroup, nav,  header, footer, figure, figcaption {
  display:           block;
 }
+
+/* Estilos para div con información de funcionamiento con SEW */
+div.funcionando-con-sew
+  {
+    background:          rgba(0,0,0, 0.1);
+    margin:              0px;
+    padding:             0px;
+    width:               88px;
+    height:              31px;
+    overflow:            hidden;
+    float:               left;
+  }
+
+div.funcionando-con-sew small
+  {
+    font-size:           0.5em;
+    margin:              -5px;
+    padding:             0px;
+    position:            relative;
+    top:                 -9px;
+  }
+
+div.funcionando-con-sew img
+  {
+    margin:              -8px;
+    padding:             0px;
+    position:            relative;
+    top:                 -11px;
+    height:              24px;
+  }
+
+
+/* Estilos generales y predeterminados para los blogs */
 
 html, body
   {

@@ -4,6 +4,44 @@ article, section, aside, hgroup, nav,  header, footer, figure, figcaption {
  display:           block;
 }
 
+/* Estilos para div con información de funcionamiento con SEW */
+div.funcionando-con-sew
+  {
+    background:          rgba(0,0,0, 0.1);
+    margin:              0px;
+    padding:             0px;
+    width:               88px;
+    height:              31px;
+    overflow:            hidden;
+    float:               left;
+  }
+
+div.funcionando-con-sew small
+  {
+    font-size:           0.5em;
+    margin:              -5px;
+    padding:             0px;
+    position:            relative;
+    top:                 -9px;
+  }
+
+div.funcionando-con-sew img
+  {
+    margin:              -8px;
+    padding:             0px;
+    position:            relative;
+    top:                 -11px;
+    height:              24px;
+  }
+/* Codigo HTML de ejemplo:
+    <div class="funcionando-con-sew">
+      <small>Funcionando con</small><br />
+      <img src="{% static "img/sew_logo_88x31.png" %}" alt="Logo de SEW" />
+    </div>
+*/
+
+
+/* Estilo de pagina principal */
 html, body
   {
     background:     #88aaff;
