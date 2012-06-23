@@ -92,6 +92,7 @@ header.wrap-foot-down
 footer.wrap-foot-down
   {
     min-height:     7% !important;
+    height:         auto !important;
   }
 
 
