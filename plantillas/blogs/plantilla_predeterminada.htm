@@ -13,21 +13,26 @@
 {% endblock %}
 
 {% block contenido %}
-  {% for articulo in articulos %}
-  <article>
-    <h1>
-      <a href="{% url blogs-url %}{{ blog.url }}/{{ articulo.url }}/">
-        {{ articulo.titulo }}
-      </a>
-    </h1>
-    <div class="ir-al-articulo">
-      <a href="{% url blogs-url %}{{ blog.url }}/{{ articulo.url }}/">
-        Ir al articulo
-      </a>
-    </div>
-    {{ articulo.contenido|safe }}
-  </article>
-  {% endfor %}
+  {% if articulos|length = 1 %}
+    {% for articulo in articulos %}
+    <article class="articulo-unico">
+      <h1>{{ articulo.titulo }}</h1>
+      {{ articulo.contenido|safe }}
+    </article>
+    {% endfor %}
+  {% else %}
+    {% for articulo in articulos %}
+    <article>
+      <h1>{{ articulo.titulo }}</h1>
+      <div class="ir-al-articulo">
+        <a href="{% url blogs-url %}{{ blog.url }}/{{ articulo.url }}/">
+          Ir al articulo
+        </a>
+      </div>
+      {{ articulo.contenido|safe }}
+    </article>
+    {% endfor %}
+  {% endif %}
 {% endblock %}
 
 {% block pie %}
