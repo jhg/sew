@@ -132,10 +132,6 @@ h1,h2,h3,h4,h5,h6
     todas estas clases usan el selector:
         section article etiqueta
     para que se aplique solo al HTML dentro de los articulos*/
-section article h1:nth-child(1) a
-  {
-    text-decoration:            none;
-  }
 
 section article h1:nth-child(1)
   {
