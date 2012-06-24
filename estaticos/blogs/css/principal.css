@@ -128,8 +128,21 @@ section article h1:nth-child(1)
     border-bottom-right-radius: 49%;
     background:                 rgba(0,0,0, 0.1) !important;
     position:                   relative;
-    top:                        -3%;
-    left:                       -1%;
+    top:                        -5px;
+    left:                       -5px;
+  }
+
+section article .ir-al-articulo
+  {
+    text-align:                 right;
+    position:                   relative;
+    top:                        -35px;
+    right:                      50px;
+  }
+
+section article .ir-al-articulo a
+  {
+    text-decoration:            none;
   }
 
 section article iframe

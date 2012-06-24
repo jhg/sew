@@ -20,6 +20,11 @@
         {{ articulo.titulo }}
       </a>
     </h1>
+    <div class="ir-al-articulo">
+      <a href="{% url blogs-url %}{{ blog.url }}/{{ articulo.url }}/">
+        Ir al articulo
+      </a>
+    </div>
     {{ articulo.contenido|safe }}
   </article>
   {% endfor %}
