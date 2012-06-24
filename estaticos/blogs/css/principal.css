@@ -109,6 +109,16 @@ h1,h2,h3,h4,h5,h6
   }
 
 
+/* Estilos especiales para el indice de blogs alojados */
+#indice-blogs-alojados
+  {
+    overflow:                   auto !important;
+    height:                     39em !important;
+    min-height:                 39em !important;
+    max-height:                 39em !important;
+  }
+
+
 /* Estilos para el HTML dentro de los articulos de los blogs
     todas estas clases usan el selector:
         section article etiqueta
