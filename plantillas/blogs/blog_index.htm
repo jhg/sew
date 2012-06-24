@@ -17,12 +17,12 @@
 {% block contenido %}
   {% for articulo in articulos %}
   <article>
-    <h2>
+    <h1>
       <a href="{% url blogs-url %}{{ blog.url }}/{{ articulo.url }}/">
         {{ articulo.titulo }}
       </a>
-    </h2>
-    <p>{{ articulo.contenido|safe }}</p>
+    </h1>
+    {{ articulo.contenido|safe }}
   </article>
   {% endfor %}
 {% endblock %}
