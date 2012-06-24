@@ -63,12 +63,21 @@ section article
     min-height:                 2em;
     max-height:                 46em;
     resize:                     vertical;/*both;*/
-    overflow:                   auto;
+    overflow:                   hidden;
     border:                     outset 0.2em rgba(0,0,0, 0.3);
     margin:                     1%;
     margin-bottom:              2%;
     padding:                    0.5%;
     box-shadow:                 3px 4px 2px 1px rgba(0,0,0, 0.5);
+  }
+
+section article.articulo-unico
+  {
+    overflow:                   auto !important;
+    min-height:                 39em !important;
+    max-height:                 100% !important;
+    height:                     auto !important;
+    resize:                     none !important;
   }
 
 section
