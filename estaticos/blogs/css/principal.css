@@ -52,32 +52,38 @@ header
     background:                 rgba(0,0,0, 0.2);
     margin:                     0%;
     padding:                    0%;
+    box-shadow:                 1px 2px 4px 1px rgba(0,0,0, 0.25);
   }
 
 section article
   {
     background:                 rgba(255,255,255, 0.2);
-    width:                      96.2%;
-    max-width:                  96.2%;
-    height:                     18em;
-    min-height:                 2em;
+    width:                      97.5%;
+    max-width:                  97.5%;
+    height:                     15em;
+    min-height:                 1.8em;
     max-height:                 46em;
     resize:                     vertical;/*both;*/
     overflow:                   hidden;
-    border:                     outset 0.2em rgba(0,0,0, 0.3);
+    border:                     outset 0.15em rgba(0,0,0, 0.3);
     margin:                     1%;
     margin-bottom:              2%;
-    padding:                    0.5%;
-    box-shadow:                 3px 4px 2px 1px rgba(0,0,0, 0.5);
+    padding:                    0px;
+    padding-bottom:             6%;
+    box-shadow:                 3px 4px 2px 1px rgba(0,0,0, 0.3);
+    border-radius:              25px;
+    border-top-left-radius:     0px;
+    border-bottom-right-radius: 0px;
   }
 
 section article.articulo-unico
   {
-    overflow:                   auto !important;
+    overflow:                   hidden !important;
     min-height:                 39em !important;
     max-height:                 100% !important;
     height:                     auto !important;
     resize:                     none !important;
+    padding-bottom:             0% !important;
   }
 
 section
@@ -87,7 +93,6 @@ section
     height:                     auto;
     margin:                     0px !important;
     padding:                    0px !important;
-    border-right:               solid black 1px;
   }
 
 footer
@@ -99,6 +104,7 @@ footer
     margin:                     0%;
     padding:                    0%;
     text-align:                 center;
+    box-shadow:                 1px -2px 4px 1px rgba(0,0,0, 0.25);
   }
 
 .no-redimensionar
@@ -112,7 +118,7 @@ h1,h2,h3,h4,h5,h6
     padding:                    0px;
   }
 
-.paginacion a
+.paginacion > a
   {
     text-decoration:            none;
   }
@@ -133,41 +139,58 @@ h1,h2,h3,h4,h5,h6
         section article etiqueta
     para que se aplique solo al HTML dentro de los articulos*/
 
-section article h1:nth-child(1)
+section article > h1:nth-child(1)
   {
     text-align:                 left !important;
     font-size:                  100% !important;
-    width:                      98% !important;
+    width:                      99% !important;
     padding:                    1%;
-    border-top-right-radius:    49%;
-    border-bottom-right-radius: 49%;
+    border-bottom-right-radius: 25px;
     background:                 rgba(0,0,0, 0.1) !important;
+    box-shadow:                 1px 2px 4px 1px rgba(0,0,0, 0.25);
+    text-shadow:                1px 2px 1px rgba(0,0,0, 0.3);
+    filter:                 dropshadow(color=rgba(0,0,0, 0.3), offx=1, offy=2);
     position:                   relative;
     top:                        -5px;
-    left:                       -5px;
+    left:                       -2px;
   }
 
-section article .ir-al-articulo
+section article > .ir-al-articulo
   {
     text-align:                 right;
     position:                   relative;
     top:                        -35px;
-    right:                      50px;
+    right:                      55px;
   }
 
-section article .ir-al-articulo a
+section article > .ir-al-articulo a
   {
     text-decoration:            none;
   }
 
-section article iframe
+section article > div.contenido-articulo
+  {
+    width:                      98%;
+    height:                     100%;
+    margin:                     0px;
+    margin-top:                 -2%;
+    padding:                    1%;
+    overflow:                   auto;
+  }
+
+section article.articulo-unico > div.contenido-articulo
+  {
+    margin-top:                 0% !important;
+  }
+
+section article > div.contenido-articulo iframe
   {
     border:                     0px;
     margin:                     0px;
     padding:                    0px;
   }
 
-section article p
+section article > div.contenido-articulo p
   {
     margin:                     0.2em;
     margin-top:                 0.4em;
@@ -175,43 +198,43 @@ section article p
     text-align:                 justify;
   }
 
-section article p:first-letter
+section article > div.contenido-articulo > p:first-letter
   {
     text-transform:             uppercase;
     font-size:                  125%;
   }
 
-section article h1
+section article > div.contenido-articulo h1
   {
     text-align:                 center;
     font-size:                  1.5em;
   }
 
-section article h2
+section article > div.contenido-articulo h2
   {
     text-align:                 center;
     font-size:                  1.3em;
   }
 
-section article h3
+section article > div.contenido-articulo h3
   {
     text-align:                 center;
     font-size:                  1.1em;
   }
 
-section article h4
+section article > div.contenido-articulo h4
   {
     text-align:                 center;
     font-size:                  0.9em;
   }
 
-section article h5
+section article > div.contenido-articulo h5
   {
     text-align:                 center;
     font-size:                  0.7em;
   }
 
-section article h6
+section article > div.contenido-articulo h6
   {
     text-align:                 center;
     font-size:                  0.5em;
