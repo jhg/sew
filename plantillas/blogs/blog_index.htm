@@ -19,7 +19,9 @@
     {% for articulo in articulos %}
     <article class="articulo-unico">
       <h1>{{ articulo.titulo }}</h1>
+      <div class="contenido-articulo">
       {{ articulo.contenido|safe }}
+      </div>
     </article>
     {% endfor %}
   {% else %}
@@ -31,7 +33,9 @@
           Ir al articulo
         </a>
       </div>
+      <div class="contenido-articulo">
       {{ articulo.contenido|safe }}
+      </div>
     </article>
     {% endfor %}
   {% endif %}
