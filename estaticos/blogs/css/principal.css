@@ -191,7 +191,12 @@ section article > h1:nth-child(1)
   {
     text-align:                 left !important;
     font-size:                  100% !important;
-    width:                      99% !important;
+    width:                      84%;
+    width:                      -moz-calc(99% - 9em) !important; /* Firefox */
+    width:                      -webkit-calc(99% - 9em) !important; /* Chrome */
+    width:                      -o-calc(99% - 9em) !important; /* Opera */
+    width:                      -ms-calc(99% - 9em) !important; /* IExplorer */
+    width:                      calc(99% - 9em) !important; /* W3C */
     padding:                    1%;
     border-bottom-right-radius: 25px;
     background:                 rgba(0,0,0, 0.1) !important;
@@ -203,15 +208,27 @@ section article > h1:nth-child(1)
     left:                       -2px;
   }
 
-section article > .ir-al-articulo
+section article > div.ir-al-articulo
   {
     text-align:                 right;
+    font-size:                  0.75em;
+    width:                      10em;
+    margin:                     0px;
+    padding:                    0px;
+    overflow:                   hidden;
+    border:                     solid black 0px;
+    resize:                     none;
     position:                   relative;
-    top:                        -35px;
-    right:                      16px;
+    top:                        -2.75em;
+    left:                       86.5%;
+    left:                       -moz-calc(100% - 11em); /* Firefox */
+    left:                       -webkit-calc(100% - 11em); /* Chrome */
+    left:                       -o-calc(100% - 11em); /* Opera */
+    left:                       -ms-calc(100% - 11em); /* IExplorer */
+    left:                       calc(100% - 11em); /* W3C */
   }
 
-section article > .ir-al-articulo a
+section article > div.ir-al-articulo a
   {
     text-decoration:            none;
   }
@@ -224,18 +241,119 @@ section article > div.contenido-articulo
     margin-top:                 -2%;
     padding:                    1%;
     overflow:                   auto;
+    resize:                     none;
+/*    scrollbar-face-color:       #99ccff;
+    scrollbar-shadow-color:     #ccccff;
+    scrollbar-highlight-color:  ccccff;
+    scrollbar-3dlight-color:    #99ccff;
+    scrollbar-darkshadow-color: #ccccff;
+    scrollbar-track-color:      #ccccff;
+    scrollbar-arrow-color:      #000033;*/
+  }
+/* Barras de desplazamiento de contenido de articulos personalizadas para
+    Chrome y Safari */
+section article > div.contenido-articulo::-webkit-scrollbar
+  {
+    background:                 rgba(0,0,0,0.0);
+    border-radius:              5px;
+    width:                      10px;
+    height:                     10px;
+  }
+section article > div.contenido-articulo::-webkit-scrollbar-button
+  {
+    background:                 rgba(0,0,0,0.3);
+    border-radius:              5px;
+    width:                      10px;
+    height:                     10px;
+  }
+section article > div.contenido-articulo::-webkit-scrollbar-track
+  {
+    background:                 rgba(0,0,0,0.1);
+    border-radius:              5px;
+  }
+section article > div.contenido-articulo::-webkit-scrollbar-track-piece
+  {
+    background:                 rgba(0,0,0,0.0);
+  }
+section article > div.contenido-articulo::-webkit-scrollbar-thumb
+  {
+    background:                 rgba(0,0,0,0.1);
+    border-radius:              5px;
+  }
+section article > div.contenido-articulo::-webkit-scrollbar-corner
+  {
+    background:                 rgba(0,0,0,0.05);
+    border-radius:              5px;
+  }
+section article > div.contenido-articulo::-webkit-resizer
+  {
+    background:                 rgba(0,0,0,0.2);
+    border-radius:              5px;
   }
 
+/* Modificaciones para cuando se muestra un articulo solo */
 section article.articulo-unico > div.contenido-articulo
   {
     margin-top:                 0% !important;
+    resize:                     none;
   }
 
 section article > div.contenido-articulo iframe
   {
+    width:                      100%;
+    height:                     16em;
+    background:                 rgba(0,0,0, 0.05);
     border:                     0px;
+    border-radius:              5px;
     margin:                     0px;
     padding:                    0px;
+/*    scrollbar-face-color:       #99ccff;
+    scrollbar-shadow-color:     #ccccff;
+    scrollbar-highlight-color:  ccccff;
+    scrollbar-3dlight-color:    #99ccff;
+    scrollbar-darkshadow-color: #ccccff;
+    scrollbar-track-color:      #ccccff;
+    scrollbar-arrow-color:      #000033;*/
+  }
+/* Barras de desplazamiento de contenido de articulos personalizadas para
+    Chrome y Safari */
+section article > div.contenido-articulo iframe::-webkit-scrollbar
+  {
+    background:                 rgba(0,0,0,0.01);
+    border-radius:              5px;
+    width:                      10px;
+    height:                     10px;
+  }
+section article > div.contenido-articulo iframe::-webkit-scrollbar-button
+  {
+    background:                 rgba(0,0,0,0.3);
+    border-radius:              5px;
+    width:                      10px;
+    height:                     10px;
+  }
+section article > div.contenido-articulo iframe::-webkit-scrollbar-track
+  {
+    background:                 rgba(0,0,0,0.05);
+    border-radius:              5px;
+  }
+section article > div.contenido-articulo iframe::-webkit-scrollbar-track-piece
+  {
+    background:                 rgba(0,0,0,0.01);
+  }
+section article > div.contenido-articulo iframe::-webkit-scrollbar-thumb
+  {
+    background:                 rgba(0,0,0,0.1);
+    border-radius:              5px;
+  }
+section article > div.contenido-articulo iframe::-webkit-scrollbar-corner
+  {
+    background:                 rgba(0,0,0,0.05);
+    border-radius:              5px;
+  }
+section article > div.contenido-articulo iframe::-webkit-resizer
+  {
+    background:                 rgba(0,0,0,0.2);
+    border-radius:              5px;
   }
 
 section article > div.contenido-articulo p
