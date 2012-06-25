@@ -39,7 +39,7 @@ div.funcionando-con-sew img
 
 html, body
   {
-    background:                 #88aaff;
+    background:                 #8af;
     margin:                     0px;
     padding:                    0px;
     width:                      100%;
@@ -162,7 +162,7 @@ section article > .ir-al-articulo
     text-align:                 right;
     position:                   relative;
     top:                        -35px;
-    right:                      55px;
+    right:                      16px;
   }
 
 section article > .ir-al-articulo a
