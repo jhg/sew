@@ -63,10 +63,6 @@ header
     padding:                    0%;
   }
 
-article
-  {
-  }
-
 footer
   {
     width:                      100%;
@@ -75,6 +71,14 @@ footer
     margin:                     0%;
     padding:                    0%;
     text-align:                 center;
+  }
+
+article
+  {
+  }
+
+section
+  {
   }
 
 
