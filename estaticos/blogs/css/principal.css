@@ -6,7 +6,8 @@ article, section, aside, hgroup, nav,  header, footer, figure, figcaption {
 /* Estilos para div con información de funcionamiento con SEW */
 div.funcionando-con-sew
   {
-    background:                 rgba(0,0,0, 0.1);
+    background:                 rgba(0,0,0, 0.05);
+    border:                     solid rgba(0,0,0, 0.1) 1px;
     margin:                     0px;
     padding:                    0px;
     width:                      88px;
