@@ -28,7 +28,6 @@ Instalación del paquete python en sus sistema recomendada
  - python-pip
  - pygraphviz
 
-
     LEEME.txt es un enlace simbolico a README.txt
     README.md es un enlace simbolico a README.txt especialmente creado para una
      visualización en Github con estilos segun la estructura del contenido.
