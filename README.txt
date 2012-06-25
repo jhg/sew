@@ -13,8 +13,7 @@ Instalación del paquete python en sus sistema recomendada
 
 Añadir al crontab (crontab -e)
 ------------------------------
-
-   * * * * * python /ruta/a/tu/proyecto/manage.py cron
+             * * * * * python /ruta/a/tu/proyecto/manage.py cron
 
 
 Sugerencias
