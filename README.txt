@@ -13,7 +13,7 @@ Instalación del paquete python en sus sistema recomendada
 
 Añadir al crontab (crontab -e)
 ------------------------------
-             * * * * * python /ruta/a/tu/proyecto/manage.py cron
+     * * * * * python /ruta/a/tu/proyecto/manage.py cron
 
 
 Sugerencias
@@ -29,6 +29,6 @@ Instalación del paquete python en sus sistema recomendada
  - pygraphviz
 
 
-LEEME.txt es un enlace simbolico a README.txt
-README.md es un enlace simbolico a README.txt especialmente creado para una
- visualización en Github con estilos segun la estructura del contenido.
+    LEEME.txt es un enlace simbolico a README.txt
+    README.md es un enlace simbolico a README.txt especialmente creado para una
+     visualización en Github con estilos segun la estructura del contenido.
