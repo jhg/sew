@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block contenido %}
-  {% if articulos|length = 1 %}
+  {% if articulos|length == 1 and not articulos.has_other_pages %}
     {% for articulo in articulos %}
     <article class="articulo-unico">
       <h1>{{ articulo.titulo }}</h1>
