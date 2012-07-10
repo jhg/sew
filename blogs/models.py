@@ -3,6 +3,7 @@ from django.contrib.auth.models import User, Group
 from settings_local import PROJECT_DIR
 from django.db import models
 from sew.slughifi import slughifi
+from django.contrib.sites.models import Site
 
 
 # Abrimos el archivo de la plantilla predeterminada de los blogs
@@ -15,6 +16,10 @@ class Blog(models.Model):
     titulo = models.CharField(max_length=64, default="", blank=False)
     # Fragmento de URL que seguira a la url de blogs e identifica este blog
     url = models.SlugField(max_length=64, default="", unique=True, blank=False)
+    # Sitios en los que funciona
+    sitios = models.ManyToManyField(Site)
+    # Indica de que sitio es la raiz
+    sitio_raiz = models.IntegerField(default=0, blank=True)
     publicado = models.BooleanField(default=False)
     bloqueado = models.BooleanField(default=False)
     descripcion = models.TextField(max_length=256, default="", blank=True)
