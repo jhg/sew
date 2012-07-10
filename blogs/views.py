@@ -4,19 +4,19 @@ from paginacionhc.PaginacionMejorada import accesos_directos_rango
 from django.shortcuts import render_to_response
 from django.template import Context, Template
 from django.http import HttpResponse
-from settings_local import HOST
+from django.conf import settings
 from blogs.models import Blog
 
 
-def blogs(plantilla, urlblog="", urlarticulo=""):
+def blogs(request, plantilla, urlblog="", urlarticulo=""):
     blogs = Blog.objects.filter(publicado=True, bloqueado=False)
     num_blogs = len(blogs)
-    host = HOST.strip("/")
+    host = request.get_host().strip("/")
     return render_to_response(plantilla, locals())
 
 
 def index_blog(request):
-    return blogs('blogs/index.htm')
+    return blogs(request, 'blogs/index.htm')
 # NOTA: Optimizar y refactorizar todo el código de este archivo
 
 
@@ -24,11 +24,11 @@ def blog(request, urlblog):
     try:
         blog = Blog.objects.get(url=urlblog)  # Encontramos el blog por su url
     except:
-        return blogs('blogs/blog_inexistente.htm', urlblog)
+        return blogs(request, 'blogs/blog_inexistente.htm', urlblog)
     if blog.bloqueado:
-        return blogs('blogs/blog_bloqueado.htm', urlblog)
+        return blogs(request, 'blogs/blog_bloqueado.htm', urlblog)
     if not blog.publicado:
-        return blogs('blogs/blog_inexistente.htm', urlblog)
+        return blogs(request, 'blogs/blog_inexistente.htm', urlblog)
     # Extraemos los articulos publicados en el blog y los ordenamos
     articulos = blog.articulo_set.filter(publicado=True)
     articulos = articulos.order_by("publicacion").reverse()
@@ -56,15 +56,15 @@ def articulo_blog(request, urlblog, urlarticulo):
     try:
         blog = Blog.objects.get(url=urlblog)  # Encontramos el blog por su url
     except:
-        return blogs('blogs/blog_inexistente.htm', urlblog)
+        return blogs(request, 'blogs/blog_inexistente.htm', urlblog)
     if blog.bloqueado:
-        return blogs('blogs/blog_bloqueado.htm', urlblog)
+        return blogs(request, 'blogs/blog_bloqueado.htm', urlblog)
     if not blog.publicado:
-        return blogs('blogs/blog_inexistente.htm', urlblog)
+        return blogs(request, 'blogs/blog_inexistente.htm', urlblog)
     # Extraemos el articulo
     articulos = blog.articulo_set.filter(publicado=True, url=urlarticulo)
     if articulos.count() == 0:
-        return blogs('blogs/blog_inexistente.htm', urlblog, urlarticulo)
+        return blogs(request, 'blogs/blog_inexistente.htm', urlblog, urlarticulo)
     # Usamos la propia plantilla del blog
     plantilla = Template('{% extends "blogs/blog_index.htm" %}\n'
         + "{% load i18n static %}\n"
