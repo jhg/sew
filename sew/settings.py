@@ -3,21 +3,18 @@
 
 import os
 from settings_local import *
+from sew.middleware.DynamicSites import DynamicSiteId, SITE_THREAD_INFO
 
 MANAGERS = ADMINS
 
-SITE_ID = 1
+# ID de sitio dinamico segun peticiones
+SITE_ID = DynamicSiteId()
 
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
-USE_I18N = True
+# URL despues del dominio para los archivos cargados
+MEDIA_URL_DIR = '/cargas/'
 
-# If you set this to False, Django will not format dates, numbers and
-# calendars according to the current locale.
-USE_L10N = True
-
-# If you set this to False, Django will not use timezone-aware datetimes.
-USE_TZ = True
+# URL despues del dominio para los archivos estaticos
+STATIC_URL_DIR = '/estaticos/'
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
@@ -26,7 +23,7 @@ MEDIA_ROOT = os.path.join(PROJECT_DIR, 'cargas')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = MEDIA_HOST + 'cargas/'
+MEDIA_URL = '//' + DEFAULT_HOST + MEDIA_URL_DIR
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -36,7 +33,7 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'estaticos')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = STATIC_HOST + 'estaticos/'
+STATIC_URL = '//' + DEFAULT_HOST + STATIC_URL_DIR
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -53,6 +50,17 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
+# If you set this to False, Django will make some optimizations so as not
+# to load the internationalization machinery.
+USE_I18N = True
+
+# If you set this to False, Django will not format dates, numbers and
+# calendars according to the current locale.
+USE_L10N = True
+
+# If you set this to False, Django will not use timezone-aware datetimes.
+USE_TZ = True
+
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -61,6 +69,7 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'sew.middleware.DynamicSites.SetDynamicSites',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

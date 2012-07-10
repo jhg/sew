@@ -110,11 +110,6 @@ LANGUAGE_CODE = 'es-es'
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'vwz(3e9-zuqf)l-&amp;6srbf7xk*gklc^*ed#=m7=lcq95mkvresz'
 
-# Host donde esta alojado SEW
-HOST = '127.0.0.1:8000'
-
-# Alojamiento de los archivos subidos
-MEDIA_HOST = '//' + HOST + '/'
-
-# Alojamiento de los archivos estaticos
-STATIC_HOST = '//' + HOST + '/'
+# Dominio predeterminado del servidor
+#  Ejemplo: '127.0.0.1:8000'
+DEFAULT_HOST = '127.0.0.1:8000'
