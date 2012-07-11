@@ -12,6 +12,7 @@ def blogs(request, plantilla, urlblog="", urlarticulo=""):
     blogs = Blog.objects.filter(publicado=True, bloqueado=False)
     num_blogs = len(blogs)
     host = request.get_host().strip("/")
+    blog_url = urlblog + '/'
     return render_to_response(plantilla, locals())
 
 
@@ -20,7 +21,11 @@ def index_blog(request):
 # NOTA: Optimizar y refactorizar todo el código de este archivo
 
 
-def blog(request, urlblog):
+def dynamic_blog(request):
+    blog_actual = Blog.objects.get(sitio_raiz=int(settings.SITE_ID))
+    return blog(request, blog_actual.url, True)
+
+def blog(request, urlblog, dinamico=False):
     try:
         blog = Blog.objects.get(url=urlblog)  # Encontramos el blog por su url
     except:
@@ -49,10 +54,19 @@ def blog(request, urlblog):
     # Usamos la propia plantilla del blog
     plantilla = Template('{% extends "blogs/blog_index.htm" %}\n'
         + blog.plantilla)
+    host = request.get_host().strip("/")
+    if dinamico:
+        blog_url = '/'
+    else:
+        blog_url = urlblog + '/'
     return HttpResponse(plantilla.render(Context(locals())))
 
 
-def articulo_blog(request, urlblog, urlarticulo):
+def dynamic_articulo_blog(request, urlarticulo):
+    blog_actual = Blog.objects.get(sitio_raiz=int(settings.SITE_ID))
+    return articulo_blog(request, blog_actual.url, urlarticulo, True)
+
+def articulo_blog(request, urlblog, urlarticulo, dinamico=False):
     try:
         blog = Blog.objects.get(url=urlblog)  # Encontramos el blog por su url
     except:
@@ -69,4 +83,9 @@ def articulo_blog(request, urlblog, urlarticulo):
     plantilla = Template('{% extends "blogs/blog_index.htm" %}\n'
         + "{% load i18n static %}\n"
         + blog.plantilla)
+    host = request.get_host().strip("/")
+    if dinamico:
+        blog_url = '/'
+    else:
+        blog_url = urlblog + '/'
     return HttpResponse(plantilla.render(Context(locals())))
