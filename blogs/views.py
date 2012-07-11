@@ -19,6 +19,7 @@ def blogs(request, plantilla, urlblog="", urlarticulo=""):
 def index_blog(request):
     return blogs(request, 'blogs/index.htm')
 # NOTA: Optimizar y refactorizar todo el código de este archivo
+# NOTA: Finalizar el cambio en la forma de implementación y continuar mejoras
 
 
 def dynamic_blog(request):
