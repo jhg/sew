@@ -23,4 +23,10 @@ class Command(BaseCommand):
                 ' --password=' + db_settings['PASSWORD'] + \
                 db_settings['NAME'] + ' > ' + \
                 PROJECT_DIR + '/privado/' + args[0] + '.sql'
+        os.system('rm -f ' + PROJECT_DIR + '/privado/' + args[0] + '.sql.old')
+        try:
+            os.system('cp ' + PROJECT_DIR + '/privado/' + args[0] + '.sql ' +\
+                PROJECT_DIR + '/privado/' + args[0] + '.sql.old')
+        except: pass
+        os.system('rm -f ' + PROJECT_DIR + '/privado/' + args[0] + '.sql')
         os.system(db_command)
