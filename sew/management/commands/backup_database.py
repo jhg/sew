@@ -18,4 +18,9 @@ class Command(BaseCommand):
                 ' PGPASSWORD=' + db_settings['PASSWORD'] + \
                 ' pg_dump ' + db_settings['NAME'] + ' > ' + \
                 PROJECT_DIR + '/privado/' + args[0] + '.sql'
+        elif db_type == 'mysql':
+            db_command = 'mysqldump --opt --user=' + db_settings['USER'] + \
+                ' --password=' + db_settings['PASSWORD'] + \
+                db_settings['NAME'] + ' > ' + \
+                PROJECT_DIR + '/privado/' + args[0] + '.sql'
         os.system(db_command)
