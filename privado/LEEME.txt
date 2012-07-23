@@ -1,0 +1,3 @@
+Este directorio esta destinado a archivos que no se publicaran, por ejemplo:
+ copias de seguridad, claves privadas que necesite que sean accesibles
+ para todos los desarrolladores, etc.
