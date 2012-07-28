@@ -153,7 +153,6 @@ INSTALLED_APPS = (
 )
 
 
-
 # Django Social Auth
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.twitter.TwitterBackend',

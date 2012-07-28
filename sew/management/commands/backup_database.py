@@ -33,7 +33,8 @@ class Command(BaseCommand):
         try:
             os.system('cp ' + settings.PRIVATE_ROOT + db_file + ' ' + \
                 settings.PRIVATE_ROOT + db_file + '.old')
-        except: pass
+        except:
+            pass
         os.system('rm -f ' + settings.PRIVATE_ROOT + db_file)
         # Realizamos la copia de seguridad de la base de datos
         os.system(db_command)

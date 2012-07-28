@@ -26,6 +26,7 @@ def dynamic_blog(request):
     blog_actual = Blog.objects.get(sitio_raiz=int(settings.SITE_ID))
     return blog(request, blog_actual.url, True)
 
+
 def blog(request, urlblog, dinamico=False):
     try:
         blog = Blog.objects.get(url=urlblog)  # Encontramos el blog por su url
@@ -67,6 +68,7 @@ def dynamic_articulo_blog(request, urlarticulo):
     blog_actual = Blog.objects.get(sitio_raiz=int(settings.SITE_ID))
     return articulo_blog(request, blog_actual.url, urlarticulo, True)
 
+
 def articulo_blog(request, urlblog, urlarticulo, dinamico=False):
     try:
         blog = Blog.objects.get(url=urlblog)  # Encontramos el blog por su url
@@ -79,7 +81,8 @@ def articulo_blog(request, urlblog, urlarticulo, dinamico=False):
     # Extraemos el articulo
     articulos = blog.articulo_set.filter(publicado=True, url=urlarticulo)
     if articulos.count() == 0:
-        return blogs(request, 'blogs/blog_inexistente.htm', urlblog, urlarticulo)
+        return blogs(request, 'blogs/blog_inexistente.htm', urlblog,
+            urlarticulo)
     # Usamos la propia plantilla del blog
     plantilla = Template('{% extends "blogs/blog_index.htm" %}\n'
         + "{% load i18n static %}\n"
