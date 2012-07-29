@@ -1,4 +1,9 @@
 #-*- coding: UTF-8 -*-
+""" For use middleware: <app>.middleware.DynamicSites.SetDynamicSites
+from <app>.middleware.DynamicSites import DynamicSiteId, SITE_THREAD_INFO
+SITE_ID = DynamicSiteId()
+MEDIA_URL_DIR = '/cargas/'
+STATIC_URL_DIR = '/estaticos/' """
 from threading import local
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -6,6 +11,7 @@ import re
 
 
 class SetDynamicSites(object):
+    """ Change SITE_ID dinamics. """
     def process_request(self, request):
         try:
             current_site = Site.objects.get(domain=request.get_host())
@@ -16,6 +22,7 @@ class SetDynamicSites(object):
                 settings.STATIC_URL_DIR
         except:
             settings.SITE_ID._set(1)
+
 
 SITE_THREAD_INFO = local()
 
