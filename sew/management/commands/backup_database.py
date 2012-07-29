@@ -7,6 +7,7 @@ import os
 
 class Command(BaseCommand):
     help = "Create backup of database"
+    args = "[database]"
 
     def handle(self, *args, **options):
         db_settings = DATABASES[args[0]]
