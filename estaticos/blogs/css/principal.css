@@ -156,7 +156,7 @@ section article
     padding:                    0px;
     padding-bottom:             6%;
     box-shadow:                 3px 4px 2px 1px rgba(0,0,0, 0.3);
-    border-radius:              25px;
+    border-radius:              1.5em;
     border-top-left-radius:     0px;
     border-bottom-right-radius: 0px;
   }
@@ -185,17 +185,6 @@ h1,h2,h3,h4,h5,h6
 .paginacion > a
   {
     text-decoration:            none;
-  }
-
-
-/* Estilos especiales para el indice de blogs alojados */
-#indice-blogs-alojados
-  {
-    overflow:                   auto !important;
-    height:                     38.5em !important;
-    min-height:                 38.5em !important;
-    max-height:                 38.5em !important;
-    padding:                    1%;
   }
 
 
