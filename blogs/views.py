@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import Context, Template
 from django.http import HttpResponse, Http404
 from django.conf import settings
+from django.contrib.sites.models import Site
 from blogs.models import Blog
 
 
@@ -19,11 +20,15 @@ def blogs(request, plantilla, urlarticulo=""):
 def index_blog(request):
     return blogs(request, 'blogs/index.htm')
 # NOTA: Optimizar y refactorizar todo el código de este archivo
-# NOTA: Finalizar el cambio en la forma de implementación y continuar mejoras
+# NOTA: Continuar mejoras
 
 
 def dynamic_blog(request):
-    blog = get_object_or_404(Blog, sitio_raiz=int(settings.SITE_ID))
+    # Obtenemos el blog de el sitio pedido
+    try:
+        blog = Site.objects.get(id=int(settings.SITE_ID)).blog_set.get()
+    except:
+        raise Http404
     if blog.bloqueado:
         return blogs(request, 'blogs/blog_bloqueado.htm')
     if not blog.publicado:
@@ -54,7 +59,11 @@ def dynamic_blog(request):
 
 
 def dynamic_articulo_blog(request, urlarticulo):
-    blog = get_object_or_404(Blog, sitio_raiz=int(settings.SITE_ID))
+    # Obtenemos el blog de el sitio pedido
+    try:
+        blog = Site.objects.get(id=int(settings.SITE_ID)).blog_set.get()
+    except:
+        raise Http404
     if blog.bloqueado:
         return blogs(request, 'blogs/blog_bloqueado.htm')
     if not blog.publicado:

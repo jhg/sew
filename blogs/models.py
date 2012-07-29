@@ -16,8 +16,6 @@ class Blog(models.Model):
     titulo = models.CharField(max_length=64, default="", blank=False)
     # Sitios en los que funciona
     sitios = models.ManyToManyField(Site)
-    # Indica de que sitio es la raiz
-    sitio_raiz = models.IntegerField(default=0, unique=True, blank=False)
     publicado = models.BooleanField(default=False)
     bloqueado = models.BooleanField(default=False)
     descripcion = models.TextField(max_length=256, default="", blank=True)

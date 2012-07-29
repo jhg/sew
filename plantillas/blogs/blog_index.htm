@@ -7,7 +7,7 @@
 
 {% block cabecera %}
   <h1>
-    <a href="//{{ host }}/blog/">
+    <a href="//{{ host }}{% url blogs-url %}">
       {{ blog.titulo }}
     </a>
   </h1>
@@ -29,7 +29,7 @@
     <article>
       <h1>{{ articulo.titulo }}</h1>
       <div class="ir-al-articulo">
-        <a href="//{{ host }}/blog/{{ articulo.url }}/">
+        <a href="//{{ host }}{% url blogs-url %}{{ articulo.url }}/">
           Ir al articulo
         </a>
       </div>
