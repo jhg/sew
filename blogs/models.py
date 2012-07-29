@@ -79,3 +79,20 @@ class Comentario(models.Model):
 
     def __unicode__(self):
         return self.texto
+
+
+class ObjetoBlog(models.Model):    
+    titulo = models.CharField(max_length=128, blank=False)
+    nombre = models.CharField(max_length=64, unique=True, blank=False)
+    creado = models.DateTimeField(auto_now_add=True)
+    modificado = models.DateTimeField(auto_now=True)
+    codigo_servidor = models.TextField(blank=True)
+    codigo = models.TextField(blank=False)
+
+    def save(self, *args, **kwargs):
+        # NOTA: mejorar sistemas de URLs amigables
+        self.nombre = slughifi(self.nombre.replace(' ', '-'))
+        super(ObjetoBlog, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return self.nombre

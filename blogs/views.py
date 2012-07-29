@@ -15,10 +15,6 @@ def blogs(request, plantilla, urlarticulo=""):
     host = request.get_host().strip("/")
     blog_url = '/'
     return render_to_response(plantilla, locals())
-
-
-def index_blog(request):
-    return blogs(request, 'blogs/index.htm')
 # NOTA: Optimizar y refactorizar todo el código de este archivo
 # NOTA: Continuar mejoras
 
@@ -52,6 +48,7 @@ def dynamic_blog(request):
         articulos = paginacion.page(paginacion.num_pages)
     # Usamos la propia plantilla del blog
     plantilla = Template('{% extends "blogs/blog_index.htm" %}\n'
+        + '{% load objetos_blog %}\n'
         + blog.plantilla)
     host = request.get_host().strip("/")
     blog_url = '/'
@@ -74,7 +71,7 @@ def dynamic_articulo_blog(request, urlarticulo):
         return blogs(request, 'blogs/blog_inexistente.htm', urlarticulo)
     # Usamos la propia plantilla del blog
     plantilla = Template('{% extends "blogs/blog_index.htm" %}\n'
-        + "{% load i18n static %}\n"
+        + '{% load objetos_blog %}\n'
         + blog.plantilla)
     host = request.get_host().strip("/")
     blog_url = '/'
