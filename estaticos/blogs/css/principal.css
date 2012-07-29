@@ -114,6 +114,32 @@ footer
                                      rgba(0,0,0,0.4) 100%);
   }
 
+aside
+  {
+    width:                      24.5%;
+    min-height:                 70%;
+    height:                     auto;
+    margin:                     0px !important;
+    padding:                    0px !important;
+    padding-left:               0.75% !important;
+    border-top-left-radius:     1em;
+    border-bottom-left-radius:  1em;
+    background:                 rgba(255, 255, 255, 0.3);
+    float:                      right;
+    position:                   relative;
+    left:                       0%;
+    top:                        -86%;
+  }
+
+section
+  {
+    width:                      75%;
+    min-height:                 83.8%;
+    height:                     auto;
+    margin:                     0px !important;
+    padding:                    0px !important;
+  }
+
 section article
   {
     background:                 rgba(255,255,255, 0.2);
@@ -143,15 +169,6 @@ section article.articulo-unico
     height:                     auto !important;
     resize:                     none !important;
     padding-bottom:             0% !important;
-  }
-
-section
-  {
-    width:                      75%;
-    min-height:                 83.8%;
-    height:                     auto;
-    margin:                     0px !important;
-    padding:                    0px !important;
   }
 
 .no-redimensionar
