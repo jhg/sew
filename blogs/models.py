@@ -14,12 +14,10 @@ plantilla_predeterminada = open(PROJECT_DIR
 
 class Blog(models.Model):
     titulo = models.CharField(max_length=64, default="", blank=False)
-    # Fragmento de URL que seguira a la url de blogs e identifica este blog
-    url = models.SlugField(max_length=64, default="", unique=True, blank=False)
     # Sitios en los que funciona
     sitios = models.ManyToManyField(Site)
     # Indica de que sitio es la raiz
-    sitio_raiz = models.IntegerField(default=0, blank=True)
+    sitio_raiz = models.IntegerField(default=0, unique=True, blank=False)
     publicado = models.BooleanField(default=False)
     bloqueado = models.BooleanField(default=False)
     descripcion = models.TextField(max_length=256, default="", blank=True)
@@ -37,7 +35,7 @@ class Blog(models.Model):
 
     def save(self, *args, **kwargs):
         # NOTA: mejorar sistemas de URLs amigables
-        self.url = slughifi(self.url)
+        #self.url = slughifi(self.url)
         super(Blog, self).save(*args, **kwargs)
 
     def __unicode__(self):
