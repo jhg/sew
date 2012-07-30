@@ -117,18 +117,19 @@ footer
 aside
   {
     width:                      24.5%;
-    min-height:                 70%;
+    min-height:                 80%;
     height:                     auto;
     margin:                     0px !important;
     padding:                    0px !important;
     padding-left:               0.75% !important;
     border-top-left-radius:     1em;
     border-bottom-left-radius:  1em;
-    background:                 rgba(255, 255, 255, 0.3);
+    background:                 rgba(255, 255, 255, 0.2);
     float:                      right;
     position:                   relative;
-    left:                       0%;
-    top:                        -86%;
+    right:                       0%;
+    top:                        0%;
+    box-shadow:                 3px 4px 2px 1px rgba(0,0,0, 0.1);
   }
 
 section

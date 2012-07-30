@@ -14,6 +14,10 @@
     Blogs en SEW
     {% endblock %}
   </header>
+  <aside>
+  {% block panel %}
+  {% endblock %}
+  </aside>
   <section>
   {% block contenido %}
       <article id="indice-blogs-alojados" class="no-redimensionar">
@@ -32,10 +36,6 @@
       </article>
   {% endblock %}
   </section>
-  <aside>
-  {% block panel %}
-  {% endblock %}
-  </aside>
   <footer>
     {% block pie %}
     <div class="funcionando-con-sew">
