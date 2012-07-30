@@ -19,12 +19,16 @@ def blogs(request, plantilla, urlarticulo=""):
 # NOTA: Continuar mejoras
 
 
-def dynamic_blog(request):
+def blog_o_404():
     # Obtenemos el blog de el sitio pedido
     try:
         blog = Site.objects.get(id=int(settings.SITE_ID)).blog_set.get()
     except:
         raise Http404
+    return blog
+
+def dynamic_blog(request):
+    blog = blog_o_404()
     if blog.bloqueado:
         return blogs(request, 'blogs/blog_bloqueado.htm')
     if not blog.publicado:
@@ -56,11 +60,7 @@ def dynamic_blog(request):
 
 
 def dynamic_articulo_blog(request, urlarticulo):
-    # Obtenemos el blog de el sitio pedido
-    try:
-        blog = Site.objects.get(id=int(settings.SITE_ID)).blog_set.get()
-    except:
-        raise Http404
+    blog = blog_o_404()
     if blog.bloqueado:
         return blogs(request, 'blogs/blog_bloqueado.htm')
     if not blog.publicado:
@@ -68,7 +68,7 @@ def dynamic_articulo_blog(request, urlarticulo):
     # Extraemos el articulo
     articulos = blog.articulo_set.filter(publicado=True, url=urlarticulo)
     if articulos.count() == 0:
-        return blogs(request, 'blogs/blog_inexistente.htm', urlarticulo)
+        raise Http404
     # Usamos la propia plantilla del blog
     plantilla = Template('{% extends "blogs/blog_index.htm" %}\n'
         + '{% load objetos_blog %}\n'
