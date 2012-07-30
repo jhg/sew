@@ -1,6 +1,7 @@
 #-*- coding: UTF-8 -*-
 from blogs.models import ObjetoBlog
 from django import template
+from django.template import Context, Template
 
 register = template.Library()
 
@@ -19,12 +20,16 @@ def objeto_blog(parser, token):
     except:
         msg = '%r tag not find object of blog' % token.split_contents()[0]
         raise template.TemplateSyntaxError(msg)
-    return ObjetoBlogNodo(objeto_actual.codigo)
+    return ObjetoBlogNodo(nombre_actual, objeto_actual.codigo)
 
 
 class ObjetoBlogNodo(template.Node):
-    def __init__(self, codigo):
+    def __init__(self, nombre, codigo):
         self.codigo = codigo
 
     def render(self, context):
-        return self.codigo
+        try:
+            plantilla = Template(self.codigo)
+            return plantilla.render(Context(locals()))
+        except:
+            return 'Error in object of blog' + nombre
