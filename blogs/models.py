@@ -92,6 +92,10 @@ class ObjetoBlog(models.Model):
     def save(self, *args, **kwargs):
         # NOTA: mejorar sistemas de URLs amigables
         self.nombre = slughifi(self.nombre.replace(' ', '-'))
+        # Hacemos unas sustituciones por seguridad en el codigo en servidor
+        self.codigo_servidor = self.codigo_servidor.replace('import', '#')
+        self.codigo_servidor = self.codigo_servidor.replace('from', '#')
+        self.codigo_servidor = self.codigo_servidor.replace('as', '#')
         super(ObjetoBlog, self).save(*args, **kwargs)
 
     def __unicode__(self):
