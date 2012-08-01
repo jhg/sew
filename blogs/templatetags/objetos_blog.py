@@ -18,33 +18,30 @@ def objeto_blog(parser, token):
     try:
         # Obtenemos el objeto de blog indicado
         objeto_actual = ObjetoBlog.objects.get(nombre=nombre_actual)
-        codigo_actual = objeto_actual.codigo
-        contexto_actual = Context({"nombre_objeto": nombre_actual})
     except:
         msg = '%r tag not find object of blog' % token.split_contents()[0]
         raise template.TemplateSyntaxError(msg)
     try:
-        if objeto_actual.codigo_servidor != '':
-            exec objeto_actual.codigo_servidor
-    except:
-        msg = '%r tag error in Python code' % token.split_contents()[0]
-        raise template.TemplateSyntaxError(msg)
-    try:
-        return ObjetoBlogNodo(nombre_actual, codigo_actual, contexto_actual)
+        codigo_actual = Template(objeto_actual.codigo)
+        codigo_servidor = objeto_actual.codigo_servidor
+        return ObjetoBlogNodo(nombre_actual, codigo_actual, codigo_servidor)
     except:
         msg = '%r tag error compiling HTML code' % token.split_contents()[0]
         raise template.TemplateSyntaxError(msg)
 
 
 class ObjetoBlogNodo(template.Node):
-    def __init__(self, nombre, codigo, contexto):
+    def __init__(self, nombre, plantilla, codigo_servidor):
         self.nombre = nombre
-        self.codigo = codigo
-        self.contexto = contexto
-        self.plantilla = Template(self.codigo)
+        self.codigo_servidor = codigo_servidor
+        self.plantilla = plantilla
 
     def render(self, context):
         try:
-            return plantilla.render(Context(self.contexto))
+            # Creamos un contexto predeterminado
+            contexto_actual = {"nombre_objeto": self.nombre}
+            if self.codigo_servidor != '':
+                exec self.codigo_servidor
+            return self.plantilla.render(Context(contexto_actual))
         except:
-            return 'Error in object of blog' + self.nombre
+            return '<!-- Error in object of blog ' + self.nombre + ' -->'
