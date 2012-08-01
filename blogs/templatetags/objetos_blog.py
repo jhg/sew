@@ -7,6 +7,7 @@ register = template.Library()
 
 from django import template
 
+
 @register.tag
 def objeto_blog(parser, token):
     try:

@@ -81,7 +81,7 @@ class Comentario(models.Model):
         return self.texto
 
 
-class ObjetoBlog(models.Model):    
+class ObjetoBlog(models.Model):
     titulo = models.CharField(max_length=128, blank=False)
     nombre = models.CharField(max_length=64, unique=True, blank=False)
     creado = models.DateTimeField(auto_now_add=True)

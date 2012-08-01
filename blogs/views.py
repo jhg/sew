@@ -27,6 +27,7 @@ def blog_o_404():
         raise Http404
     return blog
 
+
 def dynamic_blog(request):
     blog = blog_o_404()
     if blog.bloqueado:
