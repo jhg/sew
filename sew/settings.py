@@ -10,6 +10,9 @@ MANAGERS = ADMINS
 # ID de sitio dinamico segun peticiones
 SITE_ID = DynamicSiteId()
 
+CACHE_MIDDLEWARE_KEY_PREFIX = 'sew' + str(SITE_ID)
+CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
+
 # URL despues del dominio para los archivos cargados
 MEDIA_URL_DIR = '/cargas/'
 
@@ -72,10 +75,11 @@ TEMPLATE_LOADERS = (
 
 MIDDLEWARE_CLASSES = (
     'sew.middleware.DynamicSites.SetDynamicSites',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.cache.CacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
