@@ -3,10 +3,10 @@ from django.core.management.base import BaseCommand, CommandError
 from settings_local import PROJECT_DIR
 from blogs.models import ObjetoBlog
 import zipfile
-from xml.dom import minidom
+from sew.ConfiguracionXML import ConfiguracionXML
 
 
-class Command(BaseCommand):
+class Command(BaseCommand, ConfiguracionXML):
     help = "Importa objetos de blog comprimidos en ZIP"
     args = "[archivo]"
 
@@ -39,7 +39,7 @@ class Command(BaseCommand):
         codigo = ''
         titulo = ''
         nombre = ''
-        self._cargar_configuracion(objeto_zip.read('configuracion.xml'))
+        self.cadena_configuracion_xml(objeto_zip.read('configuracion.xml'))
         try:
             codigo_servidor = objeto_zip.read('codigo.py')
         except:
@@ -49,19 +49,6 @@ class Command(BaseCommand):
         except:
             pass
         archivo_zip.close()
-        titulo = self._valor_configuracion("titulo")
-        nombre = self._valor_configuracion("nombre")
+        titulo = self.valor_configuracion("titulo")
+        nombre = self.valor_configuracion("nombre")
         return titulo, nombre, codigo_servidor, codigo
-
-    def _cargar_configuracion(self, xml):
-        """ Prepara un DOM del XML para extraer la configuracion """
-        self._configuracion = minidom.parseString(xml)
-        self._configuracion = self._configuracion.childNodes[0]
-        self._cache = {}
-
-    def _valor_configuracion(self, elemento):
-        """ Recupera valores configurados en el XML y los cachea """
-        if not elemento in self._cache:
-            nodo = self._configuracion.getElementsByTagName(elemento)[0]
-            self._cache[elemento] = nodo.childNodes[0].nodeValue
-        return self._cache[elemento]
