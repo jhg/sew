@@ -5,6 +5,25 @@ import os
 from settings_local import *
 from sew.middleware.DynamicSites import DynamicSiteId, SITE_THREAD_INFO
 
+INSTALLED_APPS = (
+    'sew',
+    'paginacionhc',
+    'south',
+    'social_auth',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.admin',
+    'django_extensions',
+    'chronograph',
+    # Uncomment the next line to enable admin documentation:
+    # 'django.contrib.admindocs',
+    'blogs',
+)
+
 MANAGERS = ADMINS
 
 # ID de sitio dinamico segun peticiones
@@ -136,26 +155,6 @@ LOGGING = {
         },
     }
 }
-
-INSTALLED_APPS = (
-    'sew',
-    'paginacionhc',
-    'south',
-    'social_auth',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.admin',
-    'django_extensions',
-    'chronograph',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
-    'blogs',
-)
-
 
 # Django Social Auth
 AUTHENTICATION_BACKENDS = (
