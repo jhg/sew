@@ -1,19 +1,26 @@
 # -*- encoding: UTF-8 -*-
 from xml.dom import minidom
+import os.path
 
 
 class ConfiguracionXML(object):
     """ Clase para manejar archivos de configuración XML """
 
-    def cadena_configuracion_xml(self, xml):
-        """ Prepara un DOM del XML de la cadena para leer la configuracion """
-        self._configuracion = minidom.parseString(xml)
-        self._configuracion = self._configuracion.childNodes[0]
+    def __init__(self, xml):
         self._cache_configuracion = {}
+        if os.path.isfile(xml):
+            pass
+        else:
+            self._configuracion = minidom.parseString(xml)
+            self._configuracion = self._configuracion.childNodes[0]
 
-    def valor_configuracion(self, elemento):
-        """ Recupera valores configurados en el XML y los cachea """
+    def configuracion(self, elemento):
+        """ Recupera valores configurados en el XML """
         if not elemento in self._cache_configuracion:
-            nodo = self._configuracion.getElementsByTagName(elemento)[0]
-            self._cache_configuracion[elemento] = nodo.childNodes[0].nodeValue
+            try:
+                nodo = self._configuracion.getElementsByTagName(elemento)[0]
+                nodo = nodo.childNodes[0]
+                self._cache_configuracion[elemento] = nodo.nodeValue
+            except:
+                self._cache_configuracion[elemento] = None
         return self._cache_configuracion[elemento]
