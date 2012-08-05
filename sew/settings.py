@@ -31,6 +31,18 @@ SITE_ID = DynamicSiteId()
 
 CACHE_MIDDLEWARE_KEY_PREFIX = 'sew' + str(SITE_ID)
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
+CACHE_MIDDLEWARE_SECONDS = 86400
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+        'TIMEOUT': 86400,
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000
+        },
+        'KEY_PREFIX': 'SEW' + str(SITE_ID),
+    }
+}
 
 # URL despues del dominio para los archivos cargados
 MEDIA_URL_DIR = '/cargas/'
@@ -94,10 +106,11 @@ TEMPLATE_LOADERS = (
 
 MIDDLEWARE_CLASSES = (
     'sew.middleware.DynamicSites.SetDynamicSites',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.middleware.cache.CacheMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:

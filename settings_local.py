@@ -32,13 +32,6 @@ DATABASES = {
     }
 }
 
-CACHE_MIDDLEWARE_SECONDS = 86400
-if DEBUG:
-    CACHE_BACKEND = 'dummy:///?timeout=86400&max_entries=999&cull_percentage=9'
-else:
-    CACHE_BACKEND = \
-        'locmen:///?timeout=86400&max_entries=999&cull_percentage=9'
-
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
