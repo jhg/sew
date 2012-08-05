@@ -8,8 +8,8 @@ Instalación con Pypi recomendada
  - python-dateutil
  - django-chronograph
 
-Instalación del paquete python en sus sistema recomendada
----------------------------------------------------------
+Instalación de paquetes python en su sistema recomendada
+--------------------------------------------------------
 
 Añadir al crontab (crontab -e)
 ------------------------------
@@ -23,10 +23,20 @@ Instalación con Pypi recomendada
 --------------------------------
  - django-extensions
 
-Instalación del paquete python en sus sistema recomendada
----------------------------------------------------------
+Instalación de paquetes python en su sistema recomendada
+--------------------------------------------------------
  - python-pip
  - pygraphviz
+
+
+Instalación
+===========
+Para la instalación debe cumplir las dependencias propias de Django
+ (actualmente este projecto Django esta pensado para la versión 1.4) y
+ realizar la instalación del proyecto, si va a usar Apache y WSGI tiene
+ un ejemplo de la configuración que necesitara en apache2_wsgi.txt para
+ facilitarle la instalación, recuerde que en caso de usar Apache necesitara
+ Apache2 y el mod_wsgi del modo que indica la documentación de Django.
 
 ### Notas adicionales
  * LEEME.txt es un enlace simbolico a README.txt
