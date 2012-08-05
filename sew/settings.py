@@ -50,7 +50,8 @@ MEDIA_URL_DIR = '/cargas/'
 # URL despues del dominio para los archivos estaticos
 STATIC_URL_DIR = '/estaticos/'
 
-PRIVATE_ROOT = os.path.join(PROJECT_DIR, 'privado')
+PRIVATE_ROOT = os.path.join(PROJECT_DIR, '_privado')
+TEMPORAL_ROOT = os.path.join(PROJECT_DIR, '_temporal')
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"

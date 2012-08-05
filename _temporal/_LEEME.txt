@@ -1,0 +1,1 @@
+Directorio destinado a mantener de forma temporal archivos.
