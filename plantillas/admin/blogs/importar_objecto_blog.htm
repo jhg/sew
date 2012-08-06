@@ -1,0 +1,22 @@
+{% extends "admin/base_site.html" %}
+
+{% block title %}Importacion de objetos blog en paquetes Zip{% endblock %}
+
+{% block content %}
+<div id="content-main">
+  <h1>Importacion de objetos blog</h1><br/>
+  {% if nombre_objeto_blog %}
+    {% if nuevo_objeto_blog_actualizado %}
+      Actualizado {{ nombre_objeto_blog }} correctamente.<br/>
+    {% else %}
+      Importado {{ nombre_objeto_blog }} correctamente.<br/>
+    {% endif %}
+  {% endif %}
+  Seleccione el paquete Zip con el objeto de blog a cargar:<br/>
+  <form enctype="multipart/form-data" action="//{{ host }}{% url admin_importar_objecto_blog %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="cargar" />
+  </form>
+</div>
+{% endblock %}
