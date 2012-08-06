@@ -19,8 +19,8 @@ class Command(BaseCommand):
                     nombre=paquete.configuracion('nombre'))
                 # Lo actualizamos
                 objeto_actual.titulo = paquete.configuracion('titulo')
-                objeto_actual.codigo_servidor = codigo_servidor
-                objeto_actual.codigo = codigo
+                objeto_actual.codigo_servidor = paquete.read('codigo.py')
+                objeto_actual.codigo = paquete.read('codigo.htm')
                 objeto_actual.save()
             except:
                 # Instalamos el nuevo objeto
