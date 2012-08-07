@@ -1,14 +1,15 @@
 #-*- coding: UTF-8 -*-
-from blogs.models import ObjetoBlog
 from django import template
-from django.template import Context, Template
-from django.core.cache import cache
 
 register = template.Library()
 
 
 @register.tag
 def objeto_blog(parser, token):
+    # Realizamos las importaciones solo a nivel de esta funcion por seguridad
+    from django.core.cache import cache
+    from blogs.models import ObjetoBlog
+    from django.template import Template
     try:
         nombre_actual = token.split_contents()[1]
     except ValueError:
@@ -50,6 +51,7 @@ class ObjetoBlogNodo(template.Node):
             contexto_actual = {"nombre_objeto": self.nombre}
             if self.codigo_servidor != '':
                 exec self.codigo_servidor
+            from django.template import Context
             return self.plantilla.render(Context(contexto_actual))
         except:
             return '<!-- Error in object of blog ' + self.nombre + ' -->'

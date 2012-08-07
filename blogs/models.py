@@ -93,8 +93,11 @@ class ObjetoBlog(models.Model):
         # NOTA: mejorar sistemas de URLs amigables
         self.nombre = slughifi(self.nombre.replace(' ', '-'))
         # Hacemos unas sustituciones por seguridad en el codigo para servidor
+        self.codigo_servidor = self.codigo_servidor.replace(' (', '(')
+        self.codigo_servidor = self.codigo_servidor.replace(' )', ')')
         self.codigo_servidor = self.codigo_servidor.replace('ObjetoBlog', '#')
         self.codigo_servidor = self.codigo_servidor.replace('import', '#')
+        self.codigo_servidor = self.codigo_servidor.replace('exit()', '#')
         self.codigo_servidor = self.codigo_servidor.replace('from', '#')
         self.codigo_servidor = self.codigo_servidor.replace('as', '#')
         super(ObjetoBlog, self).save(*args, **kwargs)
