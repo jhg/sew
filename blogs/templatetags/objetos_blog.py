@@ -47,6 +47,9 @@ class ObjetoBlogNodo(template.Node):
 
     def render(self, context):
         try:
+            # Realizamos unas importaciones seguras para uso del objeto
+            import socket
+            import time
             # Creamos un contexto predeterminado
             contexto_actual = {"nombre_objeto": self.nombre}
             if self.codigo_servidor != '':
