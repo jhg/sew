@@ -4,12 +4,14 @@ import os
 
 
 def _confirmado(pregunta):
+    """ Pide al usuario una confirmación """
     respuesta = raw_input('\n  ¿' + pregunta + '? (S/N): ')
     if respuesta == 'N' or respuesta == 'n':
         return False
     return True
 
 def _menu(titulo='Menu de opciones', *menu):
+    """ Muestra al usuario un menu """
     respuesta = False
     while respuesta == False:
         print ' '
@@ -34,8 +36,8 @@ if __name__ == '__main__':
     print 'Bienvenido al asistente de SEW.'
     _opcion = _menu(
         '¿Como esta ejecutando este asistente?',
-        'Es la primera vez para realizar la instalación',
-        'No es la primera vez, es una reparación',
+        'Es la primera vez',
+        'No es la primera vez',
         'No estoy seguro')
     if _opcion == 1:
         _instalar = True
@@ -43,8 +45,7 @@ if __name__ == '__main__':
         _instalar = False
     else:
         _instalar = None
-    if _confirmado('Puedo eliminar archivos .pyc') \
-        and not _instalar:
+    if _confirmado('Puedo eliminar archivos .pyc') and not _instalar:
         print 'Eliminando archivos de bytecode de Python...'
         os.system("find ./ -name \\*.pyc -exec rm {} \\;")
         print 'Eliminados, ahora se generaran al ejecutar un .py otra vez'
