@@ -20,6 +20,7 @@ class SetDynamicSites(object):
                 settings.MEDIA_URL_DIR
             settings.STATIC_URL = '//' + request.get_host() + \
                 settings.STATIC_URL_DIR
+            settings.HOST = request.get_host()
         except:
             settings.SITE_ID._set(1)
 

@@ -45,6 +45,9 @@ TIME_ZONE = 'Atlantic/Canary'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'es-es'
 
+# First day of week, 0 for Sunday, 1 Monday, etc.
+FIRST_DAY_OF_WEEK = 1
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'vwz(3e9-zuqf)l-&amp;6srbf7xk*gklc^*ed#=m7=lcq95mkvresz'
 

@@ -29,6 +29,9 @@ MANAGERS = ADMINS
 # ID de sitio dinamico segun peticiones
 SITE_ID = DynamicSiteId()
 
+# Dominio dinamico segun peticiones
+HOST = DEFAULT_HOST
+
 CACHE_MIDDLEWARE_KEY_PREFIX = 'SEW' + str(SITE_ID)
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 CACHE_MIDDLEWARE_SECONDS = 86400
@@ -41,8 +44,12 @@ CACHES = {
             'MAX_ENTRIES': 1000
         },
         'KEY_PREFIX': 'SEW' + str(SITE_ID),
+        'VERSION': 1,
     }
 }
+
+# Maximo de memoria usada en la carga de archivos antes de mantenerlo en disco
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880 # 5242880B = 5MB
 
 # URL despues del dominio para los archivos cargados
 MEDIA_URL_DIR = '/cargas/'
