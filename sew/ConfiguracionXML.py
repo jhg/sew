@@ -20,7 +20,7 @@ class ConfiguracionXML(object):
             try:
                 nodo = self._configuracion.getElementsByTagName(elemento)[0]
                 nodo = nodo.childNodes[0]
-                self._cache_configuracion[elemento] = nodo.nodeValue
+                self._cache_configuracion[elemento] = nodo.nodeValue.strip()
             except:
                 self._cache_configuracion[elemento] = None
         return self._cache_configuracion[elemento]
