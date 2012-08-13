@@ -6,6 +6,9 @@ import tempfile
 from zipfile import ZipFile
 from sew.ConfiguracionXML import ConfiguracionXML
 from blogs.models import ObjetoBlog
+from django.contrib.admin.models import LogEntry, User, ADDITION, CHANGE
+from django.contrib.contenttypes.models import ContentType
+from django.utils.encoding import force_unicode
 
 from django import forms
 
@@ -31,14 +34,15 @@ def importar_objeto_blog(request):
                 and configuracion.configuracion('nombre') != None:
                 try:
                     # Comprobamos si existe
-                    objeto_actual = ObjetoBlog.objects.get(
+                    objeto_nuevo = ObjetoBlog.objects.get(
                         nombre=configuracion.configuracion('nombre'))
                     # Lo actualizamos
-                    objeto_actual.titulo = configuracion.configuracion('titulo')
-                    objeto_actual.codigo_servidor = paquete_zip.read('codigo.py')
-                    objeto_actual.codigo = paquete_zip.read('codigo.htm')
-                    objeto_actual.save()
+                    objeto_nuevo.titulo = configuracion.configuracion('titulo')
+                    objeto_nuevo.codigo_servidor = paquete_zip.read('codigo.py')
+                    objeto_nuevo.codigo = paquete_zip.read('codigo.htm')
+                    objeto_nuevo.save()
                     nuevo_objeto_blog_actualizado = True
+                    accion_flag = CHANGE
                 except:
                     # Instalamos el nuevo objeto
                     objeto_nuevo = ObjetoBlog(
@@ -48,6 +52,15 @@ def importar_objeto_blog(request):
                         codigo=paquete_zip.read('codigo.htm'))
                     objeto_nuevo.save()
                     nuevo_objeto_blog_actualizado = False
+                    accion_flag = ADDITION
+                LogEntry.objects.log_action(
+                    user_id = request.user.id,
+                    content_type_id = ContentType.objects.get_for_model(objeto_nuevo).id,
+                    object_id = objeto_nuevo.id,
+                    object_repr = force_unicode(objeto_nuevo),
+                    change_message = 'Cargado objeto blog en paquete Zip.',
+                    action_flag = accion_flag,
+                    )
                 nuevo_objeto_blog_nombre = configuracion.configuracion('nombre')
             paquete_zip.close()
             temp.close()
