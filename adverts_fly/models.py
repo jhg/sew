@@ -7,8 +7,8 @@ ADVERTS_FLY_DOMAINS = (
 )
 
 ADVERTS_FLY_TYPES = (
-    ('int', 'int'),
-    ('banner', 'banner'),
+    ('int', 'Interstitial'),
+    ('banner', 'Banner'),
 )
 
 class AdvertsFlyExcludeDomain(models.Model):
