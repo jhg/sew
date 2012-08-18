@@ -11,6 +11,7 @@ ADVERTS_FLY_DOMAIN = 'adf.ly' # Or 'q.gs' """
 from django.conf import settings
 import re
 import urllib, urllib2
+from adverts_fly.models import AdvertsFlySiteConfiguration
 
 
 CONFIG = {
@@ -37,14 +38,30 @@ def _Link2Advert(match):
     domain = all_link.split('/')[2]
     if domain == CONFIG['REQUEST_DOMAIN']:
         return match.group()
+    # Load configuration
+    try:
+        configuration = AdvertsFlySiteConfiguration.objects.get(
+            site=settings.SITE_ID
+            )
+    except:
+        configuration = None
     # Encode params
-    params = urllib.urlencode({
-        'uid': settings.ADVERTS_FLY_UID,
-        'key': settings.ADVERTS_FLY_KEY,
-        'advert_type': settings.ADVERTS_FLY_TYPE,
-        'domain': settings.ADVERTS_FLY_DOMAIN,
-        'url': all_link,
-        })
+    if configuration == None:
+        params = urllib.urlencode({
+            'uid': settings.ADVERTS_FLY_UID,
+            'key': settings.ADVERTS_FLY_KEY,
+            'advert_type': settings.ADVERTS_FLY_TYPE,
+            'domain': settings.ADVERTS_FLY_DOMAIN,
+            'url': all_link,
+            })
+    else:
+        params = urllib.urlencode({
+            'uid': configuration.uid,
+            'key': configuration.key,
+            'advert_type': configuration.adverts_type,
+            'domain': configuration.adverts_links_domain,
+            'url': all_link,
+            })
     # Get short url with advert
     api_adverts = urllib2.urlopen('http://api.adf.ly/api.php?' + params)
     ad_link = api_adverts.read().strip()
