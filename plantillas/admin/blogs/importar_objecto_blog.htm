@@ -13,7 +13,11 @@
     {% endif %}
   {% endif %}
   Seleccione el paquete Zip con el objeto de blog a cargar:<br/>
-  <form enctype="multipart/form-data" action="//{{ host }}{% url admin_importar_objecto_blog %}" method="post">
+  {% if form.is_multipart %}
+    <form enctype="multipart/form-data" action="//{{ host }}{% url admin_importar_objecto_blog %}" method="post">
+  {% else %}
+    <form action="//{{ host }}{% url admin_importar_objecto_blog %}" method="post">
+  {% endif %}
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="cargar" />
