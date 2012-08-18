@@ -32,19 +32,24 @@ def _Link2Advert(match):
         protocol = 'http://'
     # Make full link correct if is necesary
     all_link = re.sub(r'^//', protocol, link)
-    # Check if is internal link
-    if not re.match(r'^http[s]?://', all_link, re.IGNORECASE|re.UNICODE):
-        return match.group()
-    domain = all_link.split('/')[2]
-    if domain == CONFIG['REQUEST_DOMAIN']:
-        return match.group()
     # Load configuration
     try:
         configuration = AdvertsFlySiteConfiguration.objects.get(
             site=settings.SITE_ID
             )
+        exclude_self_domain = configuration.exclude_self_domain
+        print exclude_self_domain
     except:
         configuration = None
+        exclude_self_domain = True
+    # Check if is internal link
+    if not re.match(r'^http[s]?://', all_link, re.IGNORECASE|re.UNICODE):
+        return match.group()
+    print all_link
+    domain = all_link.split('/')[2]
+    if domain == CONFIG['REQUEST_DOMAIN'] and exclude_self_domain:
+        print 'eh?!'
+        return match.group()
     # Encode params
     if configuration == None:
         params = urllib.urlencode({
