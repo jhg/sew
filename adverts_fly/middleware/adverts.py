@@ -1,7 +1,7 @@
 #-*- coding: UTF-8 -*-
 """ Middleware for use links adverts of adf.ly in your site.
 For use middleware:
-    Django_Adverts_Fly.middleware.Adverts.ChangeLinks
+    adverts_fly.middleware.adverts.ChangeLinks
 
 In settings configure:
 ADVERTS_FLY_UID = <your_uid>
