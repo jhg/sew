@@ -15,7 +15,7 @@ plantilla_predeterminada = open(PROJECT_DIR
 class Blog(models.Model):
     titulo = models.CharField(max_length=64, default="", blank=False)
     # Sitios en los que funciona
-    sitios = models.ManyToManyField(Site)
+    sitios = models.ManyToManyField(Site, blank=False)
     publicado = models.BooleanField(default=False)
     bloqueado = models.BooleanField(default=False)
     descripcion = models.TextField(max_length=256, default="", blank=True)
