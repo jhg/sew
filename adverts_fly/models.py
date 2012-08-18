@@ -13,7 +13,7 @@ class ExcludeDomain(models.Model):
     def __unicode__(self):
         return self.domain
 
-class AdvertsFlySitesConfiguration(models.Model):
+class AdvertsFlySiteConfiguration(models.Model):
     site = models.OneToOneField(Site, blank=False)
     adverts_links_domain = models.CharField(max_length=32,
         choices=ADVERTS_FLY_DOMAINS, default="adf.ly", blank=False)
