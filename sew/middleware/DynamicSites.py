@@ -23,6 +23,7 @@ class SetDynamicSites(object):
             settings.HOST = request.get_host()
         except:
             settings.SITE_ID._set(1)
+        return None
 
 
 SITE_THREAD_INFO = local()
