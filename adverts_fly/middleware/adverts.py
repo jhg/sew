@@ -12,6 +12,7 @@ from django.conf import settings
 import re
 import urllib, urllib2
 from adverts_fly.models import AdvertsFlySiteConfiguration
+from django.contrib.sites.models import Site
 
 
 CONFIG = {
@@ -34,14 +35,14 @@ def _Link2Advert(match):
     all_link = re.sub(r'^//', protocol, link)
     # Load configuration
     try:
-        configuration = AdvertsFlySiteConfiguration.objects.get(
-            site=settings.SITE_ID
-            )
+        configuration = Site.objects.get(
+            id=int(settings.SITE_ID)).advertsflysiteconfiguration_set.get()
         exclude_self_domain = configuration.exclude_self_domain
         print exclude_self_domain
     except:
         configuration = None
         exclude_self_domain = True
+        print 'error conf'
     # Check if is internal link
     if not re.match(r'^http[s]?://', all_link, re.IGNORECASE|re.UNICODE):
         return match.group()

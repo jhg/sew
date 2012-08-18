@@ -19,7 +19,7 @@ class AdvertsFlyExcludeDomain(models.Model):
         return self.domain
 
 class AdvertsFlySiteConfiguration(models.Model):
-    site = models.OneToOneField(Site, blank=False)
+    sites = models.ManyToManyField(Site, blank=False)
     uid = models.CharField(max_length=8, blank=False)
     key = models.CharField(max_length=32, blank=False)
     adverts_links_domain = models.CharField(max_length=32,
@@ -27,9 +27,9 @@ class AdvertsFlySiteConfiguration(models.Model):
     adverts_type = models.CharField(max_length=8,
         choices=ADVERTS_FLY_TYPES, default="int", blank=False)
     exclude_self_domain = models.BooleanField(default=True)
-    excludes_domains = models.ManyToManyField(AdvertsFlyExcludeDomain,
+    exclude_domains = models.ManyToManyField(AdvertsFlyExcludeDomain,
         blank=True)
 
     def __unicode__(self):
-        return self.site.domain
+        return 'UID:' + self.uid + ' Key:' + self.key
     
