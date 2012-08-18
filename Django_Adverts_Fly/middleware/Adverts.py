@@ -13,8 +13,10 @@ import re
 import urllib, urllib2
 
 
-SECURE_LINKS = False
-REQUEST_DOMAIN = ''
+CONFIG = {
+    'SECURE_LINKS': False,
+    'REQUEST_DOMAIN': '',
+    }
 
 def _Link2Advert(match):
     """ Replace links for adverts links in all links finded """
@@ -23,7 +25,7 @@ def _Link2Advert(match):
     if link[0] == '/' and link[1] != '/':
         return match.group()
     # Check protocol for make a full link correct
-    if SECURE_LINKS:
+    if CONFIG['SECURE_LINKS']:
         protocol = 'https://'
     else:
         protocol = 'http://'
@@ -33,7 +35,7 @@ def _Link2Advert(match):
     if not re.match(r'^http[s]?://', all_link, re.IGNORECASE|re.UNICODE):
         return match.group()
     domain = all_link.split('/')[2]
-    if domain == REQUEST_DOMAIN:
+    if domain == CONFIG['REQUEST_DOMAIN']:
         return match.group()
     # Encode params
     params = urllib.urlencode({
@@ -57,8 +59,8 @@ class ChangeLinks(object):
     """ Change links for advertise links of adfly. """
     def process_response(self, request, response):
         if response.get('content-type').split(';')[0] == 'text/html':
-            SECURE_LINKS = request.is_secure()
-            REQUEST_DOMAIN = request.get_host()
+            CONFIG['SECURE_LINKS'] = request.is_secure()
+            CONFIG['REQUEST_DOMAIN'] = request.get_host()
             patron_1 = re.compile(r"<a(?P<prev>[ a-zA-Z0-9_='\"]*)"
                 + r"href='(?P<link>\S+)'(?P<next>[ a-zA-Z0-9_='\"]*)>",
                 re.IGNORECASE|re.MULTILINE|re.UNICODE)
