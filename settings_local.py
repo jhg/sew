@@ -55,6 +55,12 @@ SECRET_KEY = 'vwz(3e9-zuqf)l-&amp;6srbf7xk*gklc^*ed#=m7=lcq95mkvresz'
 #  Ejemplo: '127.0.0.1:8000'
 DEFAULT_HOST = '127.0.0.1:8000'
 
+# Django Adverts Fly
+ADVERTS_FLY_UID = ''
+ADVERTS_FLY_KEY = ''
+ADVERTS_FLY_TYPE = 'int'
+ADVERTS_FLY_DOMAIN = 'adf.ly'
+
 # Django Social Auth: OAuth Keys, availabel from:
 #    http://www.facebook.com/developers/createapp.php
 #    https://developer.yahoo.com/dashboard/createKey.html

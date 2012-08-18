@@ -21,6 +21,7 @@ INSTALLED_APPS = (
     'chronograph',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'Django_Adverts_Fly',
     'blogs',
     'recetas',
 )
@@ -118,6 +119,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.gzip.GZipMiddleware',
+    'Django_Adverts_Fly.middleware.Adverts.ChangeLinks',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
