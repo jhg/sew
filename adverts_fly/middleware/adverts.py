@@ -60,13 +60,19 @@ def _Link2Advert(match):
             return match.group()
     # Encode params
     if configuration == None:
-        params = urllib.urlencode({
-            'uid': settings.ADVERTS_FLY_UID,
-            'key': settings.ADVERTS_FLY_KEY,
-            'advert_type': settings.ADVERTS_FLY_TYPE,
-            'domain': settings.ADVERTS_FLY_DOMAIN,
-            'url': all_link,
-            })
+        try:
+            if settings.ADVERTS_FLY_UID == '' \
+                or settings.ADVERTS_FLY_KEY == '':
+                return match.group()
+            params = urllib.urlencode({
+                'uid': settings.ADVERTS_FLY_UID,
+                'key': settings.ADVERTS_FLY_KEY,
+                'advert_type': settings.ADVERTS_FLY_TYPE,
+                'domain': settings.ADVERTS_FLY_DOMAIN,
+                'url': all_link,
+                })
+        except:
+            return match.group()
     else:
         params = urllib.urlencode({
             'uid': configuration.uid,
