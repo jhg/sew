@@ -16,7 +16,7 @@ class AdvertsFlyExcludeDomain(models.Model):
     comment = models.TextField(max_length=256, blank=True)
 
     def __unicode__(self):
-        return self.domain
+        return self.domain + ' - ' + self.comment[:32]
 
 class AdvertsFlySiteConfiguration(models.Model):
     sites = models.ManyToManyField(Site, blank=False)
@@ -31,5 +31,6 @@ class AdvertsFlySiteConfiguration(models.Model):
         blank=True)
 
     def __unicode__(self):
-        return 'UID:' + self.uid + ' Key:' + self.key
-    
+        return self.uid + ' ' + self.key + ' ' + \
+            self.get_adverts_type_display().lower() + ' ' + \
+            self.get_adverts_links_domain_display()
