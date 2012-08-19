@@ -1,9 +1,12 @@
 # -*- encoding: utf-8 -*-
 from django.core.management.base import BaseCommand, CommandError
-from settings_local import DATABASES, PROJECT_DIR
+#from settings_local import DATABASES, PROJECT_DIR
 from django.conf import settings
 import os
 
+
+DATABASES = settings.DATABASES
+PROJECT_DIR = settings.PROJECT_DIR
 
 class Command(BaseCommand):
     help = "Create backup of database"
