@@ -3,18 +3,20 @@
 For use middleware:
     adverts_fly.middleware.adverts.ChangeLinks
 
-In settings configure:
+In settings configure (not is necesary):
 ADVERTS_FLY_UID = <your_uid>
 ADVERTS_FLY_KEY = <your_key>
 ADVERTS_FLY_TYPE = 'int' # Or 'banner'
 ADVERTS_FLY_DOMAIN = 'adf.ly' # Or 'q.gs' """
-from django.conf import settings
-import re
-import urllib, urllib2
+
 from adverts_fly.models import AdvertsFlySiteConfiguration
 from django.contrib.sites.models import Site
+from django.conf import settings
+import urllib, urllib2
+import re
 
 
+# For global vars modified in functions
 CONFIG = {
     'SECURE_LINKS': False,
     'REQUEST_DOMAIN': '',
@@ -33,6 +35,9 @@ def _Link2Advert(match):
         protocol = 'http://'
     # Make full link correct if is necesary
     all_link = re.sub(r'^//', protocol, link)
+    # Check if is internal link
+    if not re.match(r'^http[s]?://', all_link, re.IGNORECASE|re.UNICODE):
+        return match.group()
     # Load configuration
     try:
         configuration = Site.objects.get(
@@ -43,9 +48,13 @@ def _Link2Advert(match):
         configuration = None
         exclude_self_domain = True
         exclude_domains = []
+        try:
+            if settings.ADVERTS_FLY_UID == '' \
+                or settings.ADVERTS_FLY_KEY == '':
+                return match.group()
+        except:
+            return match.group()
     # Check if is internal link
-    if not re.match(r'^http[s]?://', all_link, re.IGNORECASE|re.UNICODE):
-        return match.group()
     domain = all_link.split('/')[2]
     if domain == CONFIG['REQUEST_DOMAIN'] and exclude_self_domain:
         return match.group()
@@ -56,9 +65,6 @@ def _Link2Advert(match):
     # Encode params
     if configuration == None:
         try:
-            if settings.ADVERTS_FLY_UID == '' \
-                or settings.ADVERTS_FLY_KEY == '':
-                return match.group()
             params = urllib.urlencode({
                 'uid': settings.ADVERTS_FLY_UID,
                 'key': settings.ADVERTS_FLY_KEY,
@@ -89,6 +95,19 @@ def _Link2Advert(match):
 class ChangeLinks(object):
     """ Change links for advertise links of adfly. """
     def process_response(self, request, response):
+        # Load configuration for optimize speed
+        try:
+            configuration = Site.objects.get(
+                id=int(settings.SITE_ID)
+                ).advertsflysiteconfiguration_set.get()
+        except:
+            configuration = None
+            try:
+                if settings.ADVERTS_FLY_UID == '' \
+                    or settings.ADVERTS_FLY_KEY == '':
+                    return response
+            except:
+                return response
         if response.get('content-type').split(';')[0] == 'text/html':
             CONFIG['SECURE_LINKS'] = request.is_secure()
             CONFIG['REQUEST_DOMAIN'] = request.get_host()
