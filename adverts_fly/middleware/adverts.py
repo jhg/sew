@@ -38,10 +38,12 @@ def _Link2Advert(match):
         configuration = Site.objects.get(
             id=int(settings.SITE_ID)).advertsflysiteconfiguration_set.get()
         exclude_self_domain = configuration.exclude_self_domain
+        exclude_domains = configuration.exclude_domains.all()
         print exclude_self_domain
     except:
         configuration = None
         exclude_self_domain = True
+        exclude_domains = []
         print 'error conf'
     # Check if is internal link
     if not re.match(r'^http[s]?://', all_link, re.IGNORECASE|re.UNICODE):
@@ -51,6 +53,11 @@ def _Link2Advert(match):
     if domain == CONFIG['REQUEST_DOMAIN'] and exclude_self_domain:
         print 'eh?!'
         return match.group()
+    # Check if is exclude domain
+    for exclude in exclude_domains:
+        if domain == exclude.domain:
+            print 'exclude ' + exclude.domain
+            return match.group()
     # Encode params
     if configuration == None:
         params = urllib.urlencode({
