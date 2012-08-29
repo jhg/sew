@@ -53,6 +53,9 @@ class ObjetoBlogNodo(Node):
             # Realizamos unas importaciones seguras para uso del objeto
             import socket
             import time
+            # Sobreescribimos objetos poco seguros
+            file = None
+            open = None
             # Creamos un contexto predeterminado
             contexto_actual = {"nombre_objeto": self.nombre}
             if self.codigo_servidor != '':
