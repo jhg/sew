@@ -1,7 +1,9 @@
 #-*- coding: UTF-8 -*-
-from django import template
 
-register = template.Library()
+from django.template import Library, Node
+
+register = Library()
+del Library
 
 
 @register.tag
@@ -9,12 +11,12 @@ def objeto_blog(parser, token):
     # Realizamos las importaciones solo a nivel de esta funcion por seguridad
     from django.core.cache import cache
     from blogs.models import ObjetoBlog
-    from django.template import Template
+    from django.template import Template, TemplateSyntaxError
     try:
         nombre_actual = token.split_contents()[1]
     except ValueError:
         msg = '%r tag requires a single argument' % token.split_contents()[0]
-        raise template.TemplateSyntaxError(msg)
+        raise TemplateSyntaxError(msg)
     try:
         # Intentamos recuperarlo de la cache
         objeto_actual = cache.get('objeto_blog' + nombre_actual)
@@ -25,7 +27,7 @@ def objeto_blog(parser, token):
             cache.delete('codigo_objeto_blog' + nombre_actual)
     except:
         msg = '%r tag not find object of blog' % token.split_contents()[0]
-        raise template.TemplateSyntaxError(msg)
+        raise TemplateSyntaxError(msg)
     try:
         # Intentamos recuperar la plantilla compilada de la cache
         codigo_actual = cache.get('codigo_objeto_blog' + nombre_actual)
@@ -36,16 +38,17 @@ def objeto_blog(parser, token):
         return ObjetoBlogNodo(nombre_actual, codigo_actual, codigo_servidor)
     except:
         msg = '%r tag error compiling HTML code' % token.split_contents()[0]
-        raise template.TemplateSyntaxError(msg)
+        raise TemplateSyntaxError(msg)
 
 
-class ObjetoBlogNodo(template.Node):
+class ObjetoBlogNodo(Node):
     def __init__(self, nombre, plantilla, codigo_servidor):
         self.nombre = nombre
         self.codigo_servidor = codigo_servidor
         self.plantilla = plantilla
 
     def render(self, context):
+        Node = None
         try:
             # Realizamos unas importaciones seguras para uso del objeto
             import socket
