@@ -1,7 +1,6 @@
 #-*- coding: UTF-8 -*-
 
 from django.template import Library, Node
-
 register = Library()
 del Library
 
@@ -47,24 +46,64 @@ class ObjetoBlogNodo(Node):
         self.nombre = nombre
         self.codigo_servidor = codigo_servidor
         self.plantilla = plantilla
-        self.site_id = settings.SITE_ID
+        self.site_id = int(settings.SITE_ID)
         del settings
 
     def render(self, context):
+        mensage_error = 'Error en objecto de blog ' + self.nombre
         try:
-            # Realizamos unas importaciones seguras para uso del objeto
-            import socket
-            import time
-            from decimal import Decimal
+            # Creamos un diccionario blog para el objeto
+            from django.contrib.sites.models import Site
+            try:
+                blog_actual = Site.objects.get(id=self.site_id).blog_set.get()
+                blog = {'id': blog_actual.id,
+                        'titulo': blog_actual.titulo,
+                        'sitios': None,
+                        'publicado': blog_actual.publicado,
+                        'bloqueado': blog_actual.bloqueado,
+                        'descripcion': blog_actual.descripcion,
+                        'creado': blog_actual.creado,
+                        'modificado': blog_actual.modificado,
+                        'articulos_por_pagina':
+                            blog_actual.articulos_por_pagina,
+                        'accesos_directos_paginacion':
+                            blog_actual.accesos_directos_paginacion,
+                        'plantilla': blog_actual.plantilla,
+                        'autores': None,
+                        'colectivos': None,}
+                del blog_actual
+            except:
+                blog = {'id': -1,
+                        'titulo': '',
+                        'sitios': None,
+                        'publicado': False,
+                        'bloqueado': False,
+                        'descripción': '',
+                        'creado': None,
+                        'modificado': None,
+                        'articulos_por_pagina': 0,
+                        'accesos_directos_paginacion': 0,
+                        'plantilla': '',
+                        'autores': None,
+                        'colectivos': None,}
+            del Site
+            # Creamos un contexto predeterminado
+            contexto_actual = {"nombre_objeto": self.nombre}
             # Sobreescribimos objetos poco seguros
             file = None
             open = None
             Node = None
-            # Creamos un contexto predeterminado
-            contexto_actual = {"nombre_objeto": self.nombre}
             if self.codigo_servidor != '':
-                exec self.codigo_servidor
+                # Realizamos unas importaciones seguras para uso del objeto
+                import socket
+                import time
+                from decimal import Decimal
+                try:
+                    exec self.codigo_servidor
+                except:
+                    mensage_error = 'Error en codigo Python' \
+                        + ' del objecto de blog ' + self.nombre
             from django.template import Context
             return self.plantilla.render(Context(contexto_actual))
         except:
-            return '<!-- Error en objecto de blog ' + self.nombre + ' -->'
+            return '<!-- ' + mensage_error + ' -->'
