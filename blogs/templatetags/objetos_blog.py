@@ -55,7 +55,7 @@ class ObjetoBlogNodo(Node):
             # Realizamos unas importaciones seguras para uso del objeto
             import socket
             import time
-            import Decimal
+            from decimal import Decimal
             # Sobreescribimos objetos poco seguros
             file = None
             open = None
