@@ -43,19 +43,23 @@ def objeto_blog(parser, token):
 
 class ObjetoBlogNodo(Node):
     def __init__(self, nombre, plantilla, codigo_servidor):
+        from django.conf import settings
         self.nombre = nombre
         self.codigo_servidor = codigo_servidor
         self.plantilla = plantilla
+        self.site_id = settings.SITE_ID
+        del settings
 
     def render(self, context):
-        Node = None
         try:
             # Realizamos unas importaciones seguras para uso del objeto
             import socket
             import time
+            import Decimal
             # Sobreescribimos objetos poco seguros
             file = None
             open = None
+            Node = None
             # Creamos un contexto predeterminado
             contexto_actual = {"nombre_objeto": self.nombre}
             if self.codigo_servidor != '':
@@ -63,4 +67,4 @@ class ObjetoBlogNodo(Node):
             from django.template import Context
             return self.plantilla.render(Context(contexto_actual))
         except:
-            return '<!-- Error in object of blog ' + self.nombre + ' -->'
+            return '<!-- Error en objecto de blog ' + self.nombre + ' -->'
