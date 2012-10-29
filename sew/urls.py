@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     url(r'^admin/chronograph/job/(?P<pk>\d+)/run/$',
         'chronograph.views.job_run', name="admin_chronograph_job_run"),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^$', index),
 )
 
