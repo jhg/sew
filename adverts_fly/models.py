@@ -10,8 +10,8 @@ ADVERTS_FLY_DOMAINS = (
 
 # Type of advert in short link, view adf.ly API
 ADVERTS_FLY_TYPES = (
-    ('int', _('Interstitial')),
-    ('banner', _('Banner')),
+    ('int', 'Interstitial'),
+    ('banner', 'Banner'),
 )
 
 # Exclude domain of short link with advert
