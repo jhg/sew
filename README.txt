@@ -4,16 +4,9 @@ Dependencias
 Instalación con Pypi recomendada
 --------------------------------
  - south
- - django-social-auth
- - python-dateutil
- - django-chronograph
 
 Instalación de paquetes python en su sistema recomendada
 --------------------------------------------------------
-
-Añadir al crontab (crontab -e)
-------------------------------
-     * * * * * python /ruta/a/tu/proyecto/manage.py cron
 
 
 Sugerencias

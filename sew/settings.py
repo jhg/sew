@@ -1,100 +1,9 @@
-#-*- coding: UTF-8 -*-
 # Django settings for sew project.
-
-import os
 from settings_local import *
-from sew.middleware.DynamicSites import DynamicSiteId, SITE_THREAD_INFO
-
-INSTALLED_APPS = (
-    'sew',
-    'paginacionhc',
-    'south',
-    'social_auth',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.admin',
-    'django_extensions',
-    'chronograph',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
-    'adverts_fly',
-    'blogs',
-    'recetas',
-)
 
 MANAGERS = ADMINS
 
-# ID de sitio dinamico segun peticiones
-SITE_ID = DynamicSiteId()
-
-# Dominio dinamico segun peticiones
-HOST = DEFAULT_HOST
-
-CACHE_MIDDLEWARE_KEY_PREFIX = 'SEW' + str(SITE_ID)
-CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
-CACHE_MIDDLEWARE_SECONDS = 86400
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'unique-snowflake',
-        'TIMEOUT': 86400,
-        'OPTIONS': {
-            'MAX_ENTRIES': 1000
-        },
-        'KEY_PREFIX': 'SEW' + str(SITE_ID),
-        'VERSION': 1,
-    }
-}
-
-# Maximo de memoria usada en la carga de archivos antes de mantenerlo en disco
-FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880 # 5242880B = 5MB
-
-# URL despues del dominio para los archivos cargados
-MEDIA_URL_DIR = '/cargas/'
-
-# URL despues del dominio para los archivos estaticos
-STATIC_URL_DIR = '/estaticos/'
-
-PRIVATE_ROOT = os.path.join(PROJECT_DIR, '_privado')
-TEMPORAL_ROOT = os.path.join(PROJECT_DIR, '_temporal')
-
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = os.path.join(PROJECT_DIR, 'cargas')
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
-# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '//' + DEFAULT_HOST + MEDIA_URL_DIR
-
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'estaticos')
-
-# URL prefix for static files.
-# Example: "http://media.lawrence.com/static/"
-STATIC_URL = '//' + DEFAULT_HOST + STATIC_URL_DIR
-
-# Additional locations of static files
-STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
-
-# List of finder classes that know how to find static files in
-# various locations.
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-)
+SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -107,26 +16,55 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/home/media/media.lawrence.com/media/"
+MEDIA_ROOT = os.path.join(PROJECT_DIR, 'cargas')
+
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash.
+# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
+MEDIA_URL = 'cargas'
+
+# Absolute path to the directory static files should be collected to.
+# Don't put anything in this directory yourself; store your static files
+# in apps' "static/" subdirectories and in STATICFILES_DIRS.
+# Example: "/home/media/media.lawrence.com/static/"
+STATIC_ROOT = os.path.join(PROJECT_DIR, '_estaticos')
+
+# URL prefix for static files.
+# Example: "http://media.lawrence.com/static/"
+STATIC_URL = '/estaticos/'
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_DIR, 'estaticos'),
+)
+
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
+
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#    'django.template.loaders.eggs.Loader',
+#     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
-    'sew.middleware.DynamicSites.SetDynamicSites',
-    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.gzip.GZipMiddleware',
-    'adverts_fly.middleware.adverts.ChangeLinks',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.cache.FetchFromCacheMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 ROOT_URLCONF = 'sew.urls'
@@ -134,22 +72,20 @@ ROOT_URLCONF = 'sew.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'sew.wsgi.application'
 
-# Directorios de plantillas
 TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
     os.path.join(PROJECT_DIR, 'plantillas'),
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.contrib.auth.context_processors.auth",
-    "django.core.context_processors.debug",
-    "django.core.context_processors.i18n",
-    "django.core.context_processors.media",
-    "django.core.context_processors.static",
-    "django.core.context_processors.tz",
-    "django.contrib.messages.context_processors.messages",
-    "social_auth.context_processors.social_auth_by_name_backends",
-#    "social_auth.context_processors.social_auth_backends",
-    "social_auth.context_processors.social_auth_by_type_backends",
+INSTALLED_APPS = (
+    'south',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -180,47 +116,3 @@ LOGGING = {
         },
     }
 }
-
-# Django Social Auth
-AUTHENTICATION_BACKENDS = (
-    'social_auth.backends.twitter.TwitterBackend',
-    'social_auth.backends.facebook.FacebookBackend',
-    'social_auth.backends.google.GoogleOAuthBackend',
-    'social_auth.backends.google.GoogleOAuth2Backend',
-    'social_auth.backends.google.GoogleBackend',
-    'social_auth.backends.yahoo.YahooBackend',
-    'social_auth.backends.browserid.BrowserIDBackend',
-    'social_auth.backends.contrib.linkedin.LinkedinBackend',
-    'social_auth.backends.contrib.livejournal.LiveJournalBackend',
-    'social_auth.backends.contrib.orkut.OrkutBackend',
-    'social_auth.backends.contrib.foursquare.FoursquareBackend',
-    'social_auth.backends.contrib.github.GithubBackend',
-#    'social_auth.backends.contrib.vkontakte.VkontakteBackend',
-#    'social_auth.backends.contrib.live.LiveBackend',
-#    'social_auth.backends.contrib.skyrock.SkyrockBackend',
-#    'social_auth.backends.contrib.yahoo.YahooOAuthBackend',
-    'social_auth.backends.OpenIDBackend',
-    'django.contrib.auth.backends.ModelBackend',
-)
-
-# django-social-auth configuracion
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/private/'
-LOGIN_ERROR_URL = '/login-error/'
-
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
-SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/'
-SOCIAL_AUTH_NEW_ASSOCIATION_REDIRECT_URL = '/'
-SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/'
-SOCIAL_AUTH_BACKEND_ERROR_URL = '/'
-SOCIAL_AUTH_COMPLETE_URL_NAME = 'socialauth_complete'
-SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
-
-SOCIAL_AUTH_DEFAULT_USERNAME = 'new_social_auth_user'
-SOCIAL_AUTH_UUID_LENGTH = 64
-
-SOCIAL_AUTH_EXTRA_DATA = False
-SOCIAL_AUTH_EXPIRATION = 'expires'
-SOCIAL_AUTH_SESSION_EXPIRATION = False
-# SOCIAL_AUTH_CREATE_USERS = False
-SOCIAL_AUTH_ASSOCIATE_BY_MAIL = True
