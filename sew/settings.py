@@ -3,6 +3,21 @@ from settings_local import *
 
 MANAGERS = ADMINS
 
+INSTALLED_APPS = (
+    'south',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.staticfiles',
+)
+
+MIDDLEWARE_CLASSES = (
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
@@ -58,15 +73,6 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
-MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.gzip.GZipMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
-
 ROOT_URLCONF = 'sew.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
@@ -77,15 +83,6 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(PROJECT_DIR, 'plantillas'),
-)
-
-INSTALLED_APPS = (
-    'south',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
 )
 
 # A sample logging configuration. The only tangible logging

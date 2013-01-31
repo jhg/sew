@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<configuracion>
-  <titulo>Hola mundo</titulo>
-  <nombre>holamundo</nombre>
-  <version>0.0.0</version>
-  <mantenedor>Jesús Hernández Gormaz</mantenedor>
-  <email>jhg.jesus@gmail.com</email>
-</configuracion>
