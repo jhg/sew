@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
+    url(r'^usuarios/', include(usuarios.urls)),
     # Examples:
     # url(r'^$', 'sew.views.home', name='home'),
     # url(r'^sew/', include('sew.foo.urls')),
