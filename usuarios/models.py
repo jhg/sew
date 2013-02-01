@@ -14,7 +14,7 @@ class Grupo(models.Model):
         return self.nombre
 
 class Usuario(models.Model):
-    nombre = models.CharField(max_length=32, unique=True, blank=False)
+    nombre_usuario = models.CharField(max_length=32, unique=True, blank=False)
     grupo = models.ManyToManyField(Grupo)
     tipo_de_autenticacion = models.ForeignKey(TipoAutenticacion)
     valor_de_autenticacion = models.CharField(max_length=512)
