@@ -1,0 +1,61 @@
+
+body
+  {
+    margin: 0px;
+    font-size: 1em;
+    counter-reset: ventanas 0;
+  }
+
+body > header
+  {
+    background-color: #08f;
+    font-size: 2em;
+    padding: 0.05em;
+    padding-left: 0.25em;
+  }
+
+body > section
+  {
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 0.2em rgba(0, 0, 220, 0.7) groove;
+    width: 30em;
+    height: 20em;
+    min-width: 1.3em;
+    min-height: 1.3em;
+    position: absolute;
+    -moz-box-shadow:7px 8px 2px rgba(30, 0, 60, 0.4);
+    -webkit-box-shadow:7px 8px 2px rgba(30, 0, 60, 0.4);
+    box-shadow:7px 8px 2px rgba(30, 0, 60, 0.4);
+    -moz-border-radius: 0.5em; /* Firefox*/
+    -ms-border-radius: 0.5em; /* IE 8.*/
+    -webkit-border-radius: 0.5em; /* Safari,Chrome.*/
+    border-radius: 0.5em; /* El estándar.*/
+    resize: both;
+    overflow: auto;
+    font-size: 1em;
+    z-index: 0;
+  }
+
+body > section > header
+  {
+    background-color: #8ff;
+    overflow: hidden;
+    resize: none;
+    font-size: 1.25em;
+    height: 1.4em;
+    padding-left: 0.2em;
+    cursor: move;
+    -moz-border-radius: 0.5em 0.5em 0em 0em; /* Firefox*/
+    -ms-border-radius: 0.5em 0.5em 0em 0em; /* IE 8.*/
+    -webkit-border-radius: 0.5em 0.5em 0em 0em; /* Safari,Chrome.*/
+    border-radius: 0.5em 0.5em 0em 0em; /* El estándar.*/
+  }
+
+body > section > header:before
+  {
+    content: counter(ventanas) " - ";
+    counter-increment: ventanas 1;
+  }
+
+
+
