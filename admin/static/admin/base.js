@@ -107,5 +107,51 @@ $("body aside .ventanas_activas").each(function(i) {
   });
 });
 
+$("body section canvas").each(function(i) {
+  var t = $(this);
+  t.data("context", this.getContext('2d'));
+  t.data("mouse_down", false);
+  $(this)[0].width = 2 * parseInt($(this).css("width"));
+  $(this)[0].height = 2 * parseInt($(this).css("height"));
+  t.dblclick(function() {
+    $(this)[0].width = 2 * parseInt($(this).css("width"));
+    $(this)[0].height = 2 * parseInt($(this).css("height"));
+  });
+  t.mousedown(function(event) {
+    var rx = parseInt($(this).parent().css("left"));
+    var ry = parseInt($(this).parent().css("top")) + parseInt($(this).parent().css("padding-top"));
+    var cw = $(this)[0].width / parseInt($(this).css("width"));
+    var ch = $(this)[0].height / parseInt($(this).css("height"));
+    $(this).data("mouse_down", true);
+    $(this).data("rx", rx);
+    $(this).data("ry", ry);
+    $(this).data("cw", cw);
+    $(this).data("ch", ch);
+    var c = $(this).data("context");
+    c.beginPath();
+    c.moveTo((event.clientX - rx) * cw, (event.clientY - ry) * ch);
+  });
+  t.mousemove(function(event) {
+    if (t.data("mouse_down")) {
+      var rx = $(this).data("rx");
+      var ry = $(this).data("ry");
+      var cw = $(this).data("cw");
+      var ch = $(this).data("ch");
+      var c = $(this).data("context");
+      c.strokeStyle = "#" + String(event.clientX % 10) + String((event.clientX + event.clientY) % 10) + String(event.clientY % 10);
+      c.lineTo((event.clientX - rx) * cw, (event.clientY - ry) * ch);
+      c.lineWidth = 6;
+      c.stroke();
+      c.closePath;
+      c.beginPath();
+      c.moveTo((event.clientX - rx) * cw, (event.clientY - ry) * ch);
+    }
+  });
+  t.mouseup(function(event) {
+    var c = $(this).data("context");
+    c.closePath;
+    $(this).data("mouse_down", false);
+  });
+});
 
 
