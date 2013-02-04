@@ -46,8 +46,12 @@ $("body section").mousedown(function(event) {
 
 $("body section header").each(function(i) {
   $(this).parent()
-    .css("top", String(i*3+3.75) + "em")
-    .css("left", String(i*2.5+1.25) + "em");
+    .css("opacity", 0)
+    .animate({
+      top: String(i*2+3) + "em",
+      left: String(i*5+4) + "em",
+      opacity: 1,
+    }, 1500);
 });
 
 $("body").data('windows_moving', null);
@@ -65,6 +69,42 @@ $(document).mousemove(function(event) {
         .data('prev_mouse_y', event.pageY);
     }
   }
+});
+
+$("body aside .ventanas_activas").each(function(i) {
+  var t = $(this);
+  t.empty();
+  $("body section header").each(function(j) {
+    t.append("<div>"+$(this).html()+"</div>");
+  });
+  var ventanas = $("body section");
+  t.children().each(function(j) {
+    $(this)
+      .css("opacity", 0)
+      .animate({
+        opacity: 1,
+      }, 2000);
+    $(this).click(function() {
+      var v = $(ventanas[j]);
+      if (parseInt(v.css("z-index")) == 1) {
+        v.animate({
+          opacity: 0,
+        }, 500);
+        window.setTimeout(function() {
+          v
+            .css("visibility", "hidden")
+            .css("z-index", 0);
+        }, 1000);
+      } else {
+        v
+          .css("visibility", "visible")
+          .animate({
+            opacity: 1,
+          }, 1000)
+          .mousedown();
+      }
+    });
+  });
 });
 
 
