@@ -14,7 +14,7 @@ $("body section header").mouseup(function() {
     .data('is_mouse_down', false)
     .removeData('prev_mouse_x')
     .removeData('prev_mouse_y');
-  $("body").data('windows_moving', null);
+  $("body").removeData('windows_moving');
 });
 
 $("body section header").mousemove(function(event) {
@@ -44,8 +44,8 @@ $("body section").mousedown(function(event) {
   $(this).css("z-index", 1);
 });
 
-$("body section header").each(function(i) {
-  $(this).parent()
+$("body section").each(function(i) {
+  $(this)
     .css("opacity", 0)
     .animate({
       top: String(i*2+3) + "em",
@@ -54,7 +54,6 @@ $("body section header").each(function(i) {
     }, 1500);
 });
 
-$("body").data('windows_moving', null);
 $(document).mousemove(function(event) {
   var i = $("body").data('windows_moving');
   if (i != null) {
