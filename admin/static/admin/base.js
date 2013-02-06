@@ -153,4 +153,43 @@ $("body section canvas").each(function(i) {
   });
 });
 
+$("body div.img img").click(function(event) {
+  var i = $(this);
+  if (i.data('is_mouse_down') != true) {
+    i
+      .data('is_mouse_down', true)
+      .data('prev_mouse_x', event.pageX)
+      .data('prev_mouse_y', event.pageY);
+  } else {
+    i
+      .data('is_mouse_down', false)
+      .removeData('prev_mouse_x')
+      .removeData('prev_mouse_y');
+  }
+});
+
+$("body div.img img").dblclick(function(event) {
+  $("body").css("background", "url(" + this.src + ") no-repeat");
+});
+
+$("body div.img img").mousemove(function(event) {
+  var i = $(this);
+  if (i.data('is_mouse_down')) {
+    var new_x = event.pageX - i.data('prev_mouse_x');
+    var new_y = event.pageY - i.data('prev_mouse_y');
+    i.parent()
+      .css("left", $(this).parent().position().left + new_x)
+      .css("top", $(this).parent().position().top + new_y);
+    i
+      .data('prev_mouse_x', event.pageX)
+      .data('prev_mouse_y', event.pageY);
+  }
+});
+
+$("body div.img img").mouseout(function(event) {
+  $(this)
+    .data('is_mouse_down', false)
+    .removeData('prev_mouse_x')
+    .removeData('prev_mouse_y');
+});
 

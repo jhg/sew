@@ -163,5 +163,41 @@ body > section > iframe
     height: calc(100% - 0.6em);
   }
 
+body > div.img
+  {
+    background: #fff;
+    background: rgba(255, 255, 255, 0);
+    position: absolute;
+    resize: both;
+    overflow: hidden;
+    z-index: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -moz-box-shadow:7px 8px 2px rgba(30, 0, 60, 0.1);
+    -webkit-box-shadow:7px 8px 2px rgba(30, 0, 60, 0.1);
+    box-shadow:7px 8px 2px rgba(30, 0, 60, 0.1);
+    min-width: 1em;
+    min-height: 1em;
+    width: 5em;
+    height: 5em;
+    text-align: center;
+  }
+
+body > div.img > img
+  {
+    -moz-border-radius: 1em;
+    -ms-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    max-height: auto;
+    z-index: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+  }
 
 
