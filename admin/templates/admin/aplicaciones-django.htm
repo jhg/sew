@@ -1,0 +1,7 @@
+{% extends "admin/base.htm" %}
+{% block titulo %}Aplicaciones Django{% endblock %}
+{% block cuerpo %}
+    {% for item in APPS_DJANGO %}
+        {{ item }}<br/>
+    {% endfor %}
+{% endblock %}

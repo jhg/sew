@@ -2,42 +2,12 @@
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Administración</title>
+    <title>{% block titulo %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/base.css" />
-    <script src="http://code.jquery.com/jquery-1.9.0.js"></script>
+    {% block cabecera %}{% endblock %}
 </head>
 <body>
-
-<header>Administración</header>
-
-<nav></nav>
-
-<section>
-<header>Pizarra</header>
-<canvas>Tu navegador no es compatible con canvas de HTML5</canvas>
-</section>
-
-<section id="mover">
-<header>Aplicaciones Django</header>
-Lista de aplicaciones
-</section>
-
-<section>
-<header>Herramientas</header>
-Lista de herramientas
-</section>
-
-<section>
-<header>Iframe</header>
-<iframe src="http://www.google.es/"></iframe>
-</section>
-
-<aside>
-<div class="ventanas_activas"></div>
-</aside>
-
-<footer></footer>
-<script type="text/javascript" src="{{ STATIC_URL }}admin/base.js"></script>
+{% block cuerpo %}{% endblock %}
 </body>
 </html>
