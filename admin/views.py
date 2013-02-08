@@ -27,3 +27,13 @@ def modelos_django(request, app):
         'STATIC_URL': settings.STATIC_URL,
         'MODELS_DJANGO': tuple(modelos),
     })
+
+def modelo_de_aplicacion_django(request, app, modelo):
+    modulo = import_module(app + '.models')
+    clase_modelo = eval('modulo.' + modelo)
+    datos = clase_modelo.objects.all()
+    return render_to_response("admin/datos-modelo-django.htm",
+    {
+        'STATIC_URL': settings.STATIC_URL,
+        'DATA_DJANGO': tuple(datos),
+    })
