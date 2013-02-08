@@ -46,13 +46,14 @@ def modelo_de_aplicacion_django(request, app, modelo):
     })
 
 def editar_modelo_de_aplicacion_django(request, app, modelo, num_id=None):
+    """ Edita objetos de modelos o los crea nuevos """
     modulo = import_module(app + '.models')
     clase_modelo = eval('modulo.' + modelo)
     class clase_formulario(ModelForm):
         class Meta:
             model = clase_modelo
     if request.POST:
-        formulario = clase_formulario(instance=request.POST)
+        formulario = clase_formulario(request.POST)
         if formulario.is_valid():
             formulario.save()
         if num_id == None:
