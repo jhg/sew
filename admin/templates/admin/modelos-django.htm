@@ -1,10 +1,3 @@
-{% extends "admin/base.htm" %}
-{% block titulo %}Aplicaciones Django{% endblock %}
-{% block cuerpo %}
-    <a href="../">Atras</a><br/>
-    {% for item in MODELS_DJANGO %}
-        <a href="{{ item }}">{{ item }}</a><br/>
-    {% empty %}
-        No existen modelos en esta aplicación.<br/>
-    {% endfor %}
-{% endblock %}
+{% extends "admin/base-aplicaciones-django.htm" %}
+{% block navegacion %}<a href="../">Atras</a>{% endblock %}
+{% block vacio %}No existen modelos en esta aplicación.{% endblock %}

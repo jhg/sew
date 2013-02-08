@@ -1,8 +1,11 @@
 {% extends "admin/base.htm" %}
 {% block titulo %}Formulario Django{% endblock %}
 {% block cuerpo %}
-    <a href="{{ MODEL_URL }}">Atras</a><br/>
+    <nav><a href="{{ MODEL_URL }}">Atras</a></nav>
     <form action="" method="post">{% csrf_token %}
-        {{ FORM_DJANGO }}
+        {% for item in FORM_DJANGO %}
+        <label>{{ item.label }}: </label>{{ item }}<br/>
+        {% endfor %}
+        <input type="submit" value="Aceptar">
     </form>
 {% endblock %}

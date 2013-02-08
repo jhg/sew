@@ -20,6 +20,16 @@ body > header
     z-index: 0;
   }
 
+body > nav
+  {
+    background-color: #4cf;
+    width: 100%;
+    font-size: 1.25em;
+    padding: 0.05em;
+    padding-left: 0.25em;
+    z-index: 0;
+  }
+
 body > section
   {
     background-color: rgba(255, 255, 255, 0.75);

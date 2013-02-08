@@ -18,7 +18,7 @@ def aplicaciones_django(request):
     return render_to_response("admin/aplicaciones-django.htm",
     {
         'STATIC_URL': settings.STATIC_URL,
-        'APPS_DJANGO': settings.INSTALLED_APPS,
+        'items': settings.INSTALLED_APPS,
     })
 
 def modelos_django(request, app):
@@ -31,7 +31,7 @@ def modelos_django(request, app):
     return render_to_response("admin/modelos-django.htm",
     {
         'STATIC_URL': settings.STATIC_URL,
-        'MODELS_DJANGO': tuple(modelos),
+        'items': tuple(modelos),
     })
 
 def modelo_de_aplicacion_django(request, app, modelo):
@@ -42,7 +42,7 @@ def modelo_de_aplicacion_django(request, app, modelo):
     return render_to_response("admin/datos-modelo-django.htm",
     {
         'STATIC_URL': settings.STATIC_URL,
-        'DATA_DJANGO': tuple(datos),
+        'items': tuple(datos),
     })
 
 def editar_modelo_de_aplicacion_django(request, app, modelo, num_id=None):
