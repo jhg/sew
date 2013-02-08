@@ -1,0 +1,8 @@
+{% extends "admin/base.htm" %}
+{% block titulo %}Formulario Django{% endblock %}
+{% block cuerpo %}
+    <a href="../../">Atras</a><br/>
+    <form action="" method="post">{% csrf_token %}
+        {{ FORM_DJANGO }}
+    </form>
+{% endblock %}
