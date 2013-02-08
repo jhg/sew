@@ -1,4 +1,5 @@
 from django.shortcuts import render_to_response, redirect
+from django.core.urlresolvers import reverse
 from django.conf import settings
 from importlib import import_module
 from inspect import isclass
@@ -51,6 +52,8 @@ def editar_modelo_de_aplicacion_django(request, app, modelo, num_id=None):
         formulario = clase_formulario(instance=request.POST)
         if formulario.is_valid():
             formulario.save()
+        if num_id == None:
+            return redirect('datosaplicacionesdjango', app=app, modelo=modelo)
     else:
         if num_id == None:
             formulario = clase_formulario()
@@ -61,6 +64,7 @@ def editar_modelo_de_aplicacion_django(request, app, modelo, num_id=None):
     c.update(csrf(request))
     c['STATIC_URL'] = settings.STATIC_URL
     c['FORM_DJANGO'] = formulario
+    c['MODEL_URL'] = reverse('datosaplicacionesdjango', args=[app, modelo])
     return render_to_response("admin/formulario-modelo-django.htm", c)
 
 def borrar_modelo_de_aplicacion_django(request, app, modelo, num_id):

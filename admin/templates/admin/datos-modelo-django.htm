@@ -1,10 +1,10 @@
 {% extends "admin/base.htm" %}
 {% block titulo %}Aplicaciones Django{% endblock %}
 {% block cuerpo %}
-    <a href="../">Atras</a><br/>
-    <a href="n">Nuevo</a><br/>
+    <a href="../">Atras</a> <a href="n">Nuevo</a><br/>
     {% for item in DATA_DJANGO %}
-        <a href="{{ item }}">{{ item }}</a><br/>
+        <a href="e/{{ item.id }}">{{ item }}</a>
+        <a href="b/{{ item.id }}">borrar</a><br/>
     {% empty %}
         No existen datos en este modelo.<br/>
     {% endfor %}
