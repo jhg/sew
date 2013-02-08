@@ -1,6 +1,7 @@
 {% extends "admin/base.htm" %}
 {% block titulo %}Aplicaciones Django{% endblock %}
 {% block cuerpo %}
+    <a href="../">Atras</a><br/>
     {% for item in MODELS_DJANGO %}
         <a href="{{ item }}">{{ item }}</a><br/>
     {% empty %}
