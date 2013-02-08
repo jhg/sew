@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.conf import settings
 from importlib import import_module
 from inspect import isclass
@@ -64,23 +64,9 @@ def editar_modelo_de_aplicacion_django(request, app, modelo, num_id=None):
     return render_to_response("admin/formulario-modelo-django.htm", c)
 
 def borrar_modelo_de_aplicacion_django(request, app, modelo, num_id):
+    """ Borra un objeto de un modelo indicado por su id """
     modulo = import_module(app + '.models')
     clase_modelo = eval('modulo.' + modelo)
-    class clase_formulario(ModelForm):
-        class Meta:
-            model = clase_modelo
-    if request.POST:
-        formulario = clase_formulario(instance=request.POST)
-        if formulario.is_valid():
-            formulario.save()
-    else:
-        if num_id == None:
-            formulario = clase_formulario()
-        else:
-            dato = clase_modelo.objects.get(id=int(num_id))
-            formulario = clase_formulario(instance=dato)
-    c = {}
-    c.update(csrf(request))
-    c['STATIC_URL'] = settings.STATIC_URL
-    c['FORM_DJANGO'] = formulario
-    return render_to_response("admin/formulario-modelo-django.htm", c)
+    dato = clase_modelo.objects.get(id=int(num_id))
+    dato.delete()
+    return redirect('datosaplicacionesdjango', app=app, modelo=modelo)
