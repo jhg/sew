@@ -1,0 +1,17 @@
+{% extends "admin/base.htm" %}
+{% block titulo %}Aplicaciones Django{% endblock %}
+{% block cuerpo %}
+
+  <nav>{% block navegacion %}{% endblock %}</nav>
+
+  {% for item in items %}
+    {% block elemento %}
+      <a href="{{ item }}">{{ item }}</a><br/>
+    {% endblock %}
+  {% empty %}
+    {% block vacio %}
+      No existen aplicaciones, debe haber algun error.
+    {% endblock %}<br/>
+  {% endfor %}
+
+{% endblock %}
