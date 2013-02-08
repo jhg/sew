@@ -1,5 +1,7 @@
 from django.shortcuts import render_to_response
 from django.conf import settings
+from importlib import import_module
+from inspect import isclass
 
 def index(request):
     return render_to_response("admin/administracion.htm",
@@ -12,4 +14,16 @@ def aplicaciones_django(request):
     {
         'STATIC_URL': settings.STATIC_URL,
         'APPS_DJANGO': settings.INSTALLED_APPS,
+    })
+
+def modelos_django(request, app):
+    modulo = import_module(app + '.models')
+    modelos = []
+    for n in dir(modulo):
+        if isclass(eval('modulo.' + n)):
+            modelos.append(n)
+    return render_to_response("admin/modelos-django.htm",
+    {
+        'STATIC_URL': settings.STATIC_URL,
+        'MODELS_DJANGO': tuple(modelos),
     })
