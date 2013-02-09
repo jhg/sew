@@ -1,4 +1,4 @@
-{% extends "admin/base.htm" %}
+{% extends "admin/base-aplicaciones-django.htm" %}
 {% block titulo %}Formulario Django{% endblock %}
 {% block cuerpo %}
     <nav><a href="{{ MODEL_URL }}">Atras</a></nav>
@@ -6,6 +6,6 @@
         {% for item in FORM_DJANGO %}
         <label>{{ item.label }}: </label>{{ item }}<br/>
         {% endfor %}
-        <input type="submit" value="Aceptar">
+        <input type="submit" value="Guardar">
     </form>
 {% endblock %}

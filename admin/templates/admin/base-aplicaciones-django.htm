@@ -1,7 +1,14 @@
-{% extends "admin/base.htm" %}
-{% block titulo %}Aplicaciones Django{% endblock %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>{% block titulo %}Aplicaciones Django{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/base.css" />
+    {% block cabecera %}{% endblock %}
+</head>
+<body class="aplicacion">
 {% block cuerpo %}
-
   <nav>{% block navegacion %}{% endblock %}</nav>
 
   {% for item in items %}
@@ -13,5 +20,6 @@
       No existen aplicaciones, debe haber algun error.
     {% endblock %}<br/>
   {% endfor %}
-
 {% endblock %}
+</body>
+</html>

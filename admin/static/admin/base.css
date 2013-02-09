@@ -1,13 +1,22 @@
 
 body
   {
-    margin: 0px;
+    margin: 0em;
     font-size: 1em;
     counter-reset: ventanas 0;
     overflow: hidden;
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: -moz-none;
+  }
+
+body.aplicacion
+  {
+    margin: 0.5em;
+    overflow: auto;
+    user-select: auto;
+    -webkit-user-select: auto;
+    -moz-user-select: -moz-auto;
   }
 
 body > header
@@ -24,16 +33,37 @@ body > nav
   {
     background-color: #4cf;
     width: 100%;
+    min-height: 1.25em;
     font-size: 1.25em;
     padding: 0.05em;
     padding-left: 0.25em;
     z-index: 0;
   }
 
+body > form > input
+  {
+    border: 0.1em #000 solid;
+    -moz-border-radius: 0.25em;
+    -ms-border-radius: 0.25em;
+    -webkit-border-radius: 0.25em;
+    border-radius: 0.25em;
+  }
+
+body > form > select
+  {
+    border: 0.1em #000 solid;
+    height: 2em;
+    -moz-border-radius: 0.25em;
+    -ms-border-radius: 0.25em;
+    -webkit-border-radius: 0.25em;
+    border-radius: 0.25em;
+  }
+
+
 body > section
   {
     background-color: rgba(255, 255, 255, 0.75);
-    border: 0.25em rgba(0, 0, 220, 0.7) groove;
+    border: 0.2em rgba(0, 0, 220, 0.6) groove;
     min-width: 15em !important;
     min-height: 10em !important;
     position: absolute;
@@ -159,16 +189,17 @@ body > section > iframe
   {
     bottom: 0em;
     margin: 0em;
-    width: 99%;
-    width: -webkit-calc(100% - 0.25em);
-    width: -moz-calc(100% - 0.25em);
-    width: -ms-calc(100% - 0.25em);
-    width: calc(100% - 0.25em);
+    width: 98%;
+    width: -webkit-calc(100% - 0.3em);
+    width: -moz-calc(100% - 0.3em);
+    width: -ms-calc(100% - 0.3em);
+    width: calc(100% - 0.3em);
     height: 97%;
     height: -webkit-calc(100% - 0.6em);
     height: -moz-calc(100% - 0.6em);
     height: -ms-calc(100% - 0.6em);
     height: calc(100% - 0.6em);
+    border: 0em;
   }
 
 body > div.img
