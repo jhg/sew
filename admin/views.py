@@ -27,7 +27,11 @@ def modelos_django(request, app):
     modelos = []
     for n in dir(modulo):
         if isclass(eval('modulo.' + n)):
-            modelos.append(n)
+            try:
+                temp = eval('modulo.' + n + '.objects')
+                modelos.append(n)
+            except:
+                pass
     return render_to_response("admin/modelos-django.htm",
     {
         'STATIC_URL': settings.STATIC_URL,
