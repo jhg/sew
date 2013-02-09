@@ -7,5 +7,7 @@ urlpatterns = patterns('escritorios.views',
 
 if settings.DEBUG:
     urlpatterns += patterns('',
-        (r'^estaticos/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+        (r'^estaticos/(?P<path>.*)$',
+        'django.views.static.serve',
+        {'document_root': settings.STATIC_ROOT}),
     )

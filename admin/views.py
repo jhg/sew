@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response, redirect
 from django.core.urlresolvers import reverse
 from django.conf import settings
@@ -24,11 +25,11 @@ def aplicaciones_django(request):
 
 def modelos_django(request, app):
     """ Muestra todos los modelos de una aplicacion Django """
-    modulo = import_module(app + '.models')
-    modelos = []
-    for n in dir(modulo):
-        if isclass(eval('modulo.' + n)):
-            try:
+    modulo = import_module(app + '.models') # Importamos el modulo de modelos
+    modelos = []                            # Añadiremos las clases que tengan
+    for n in dir(modulo):                   #  un atributo objects para asi
+        if isclass(eval('modulo.' + n)):    #  diferenciar modelos de otras
+            try:                            #  clases.
                 temp = eval('modulo.' + n + '.objects')
                 modelos.append(n)
             except:
@@ -41,9 +42,9 @@ def modelos_django(request, app):
 
 def modelo_de_aplicacion_django(request, app, modelo):
     """ Muestra todos los objetos de un modelo """
-    modulo = import_module(app + '.models')
-    clase_modelo = eval('modulo.' + modelo)
-    datos = clase_modelo.objects.all()
+    modulo = import_module(app + '.models') # Importamos el modulo de modelos
+    clase_modelo = eval('modulo.' + modelo) # Obtenemos el modelo
+    datos = clase_modelo.objects.all()      # Recuperamos todos los objetos
     return render_to_response("admin/datos-modelo-django.htm",
     {
         'STATIC_URL': settings.STATIC_URL,
@@ -52,24 +53,24 @@ def modelo_de_aplicacion_django(request, app, modelo):
 
 def editar_modelo_de_aplicacion_django(request, app, modelo, num_id=None):
     """ Edita objetos de modelos o los crea nuevos """
-    modulo = import_module(app + '.models')
-    clase_modelo = eval('modulo.' + modelo)
-    class clase_formulario(ModelForm):
+    modulo = import_module(app + '.models') # Importamos el modulo de modelos
+    clase_modelo = eval('modulo.' + modelo) # Obtenemos el modelo
+    class clase_formulario(ModelForm):      # Clase formulario para el modelo
         class Meta:
             model = clase_modelo
-    if request.POST:
-        formulario = clase_formulario(request.POST)
-        if formulario.is_valid():
-            formulario.save()
-        if num_id == None:
+    if request.POST:                                # Si se reciven datos
+        formulario = clase_formulario(request.POST) #  creamos el objeto del
+        if formulario.is_valid():                   #  formulario y validamos
+            formulario.save()                       # Guardamos los datos
+        if num_id == None: # Si es un objeto nuevo redireccionamos al listado
             return redirect('datosaplicacionesdjango', app=app, modelo=modelo)
     else:
-        if num_id == None:
+        if num_id == None: # Nuevo formulario vacio o formulario de edición
             formulario = clase_formulario()
         else:
             dato = clase_modelo.objects.get(id=int(num_id))
             formulario = clase_formulario(instance=dato)
-    c = {}
+    c = {} # Creamos el contexto por partes para incluir la proteccion CSRF
     c.update(csrf(request))
     c['STATIC_URL'] = settings.STATIC_URL
     c['FORM_DJANGO'] = formulario
