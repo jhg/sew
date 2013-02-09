@@ -8,6 +8,7 @@ from django.core.context_processors import csrf
 
 
 def index(request):
+    """ Escritorio web sencillo para la administracion """
     return render_to_response("admin/administracion.htm",
       {
         'STATIC_URL': settings.STATIC_URL,
