@@ -19,22 +19,22 @@ body.aplicacion
     -moz-user-select: -moz-auto;
   }
 
-body > header
-  {
-    background-color: #08f;
-    width: 100%;
-    font-size: 2em;
-    padding: 0.05em;
-    padding-left: 0.25em;
-    z-index: 0;
-  }
-
-body > nav
+body.aplicacion > nav
   {
     background-color: #4cf;
     width: 100%;
     min-height: 1.25em;
     font-size: 1.25em;
+    padding: 0.05em;
+    padding-left: 0.25em;
+    z-index: 0;
+  }
+
+body > header
+  {
+    background-color: #08f;
+    width: 100%;
+    font-size: 2em;
     padding: 0.05em;
     padding-left: 0.25em;
     z-index: 0;
@@ -128,8 +128,8 @@ body > aside > div
     position: relative;
     display: inline;
     float: left;
-    height: 0.8em;
-    top: 0.1em;
+    height: 1.2em;
+    top: 0.15em;
   }
 
 body > aside > div.ventanas_activas > div
