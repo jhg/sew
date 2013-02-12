@@ -1,0 +1,5 @@
+{% for selector,d in reglas.items %}
+{{ selector }}
+  {{% for propiedad,v in d.items %}
+    {{ propiedad }}: {{ v }};{% endfor %}
+  }{% endfor %}

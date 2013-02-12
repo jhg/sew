@@ -10,6 +10,7 @@ INSTALLED_APPS = (
     'south',
     'admin',
     'usuarios',
+    'css',
     'escritorios',
 )
 
