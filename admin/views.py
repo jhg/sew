@@ -58,9 +58,13 @@ def editar_modelo_de_aplicacion_django(request, app, modelo, num_id=None):
     class clase_formulario(ModelForm):      # Clase formulario para el modelo
         class Meta:
             model = clase_modelo
-    if request.POST:                                # Si se reciven datos
-        formulario = clase_formulario(request.POST) #  creamos el objeto del
-        if formulario.is_valid():                   #  formulario y validamos
+    if request.POST:                                    # Si se reciven datos
+        if num_id == None:                              #  creamos el objeto de
+            formulario = clase_formulario(request.POST) #  formulario
+        else:
+            dato = clase_modelo.objects.get(id=int(num_id))
+            formulario = clase_formulario(request.POST, instance=dato)
+        if formulario.is_valid():                   # Validamos
             formulario.save()                       # Guardamos los datos
         if num_id == None: # Si es un objeto nuevo redireccionamos al listado
             return redirect('datosaplicacionesdjango', app=app, modelo=modelo)
