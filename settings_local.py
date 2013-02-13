@@ -48,5 +48,17 @@ LANGUAGE_CODE = 'es-es'
 # First day of week, 0 for Sunday, 1 Monday, etc.
 FIRST_DAY_OF_WEEK = 1
 
+# Cache
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake'
+        'TIMEOUT': 600,
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000
+        }
+    }
+}
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'iwv!am3+-k@2=lg5#(8o9h=zpa(degh-k%5z*pc1tk&amp;a!16&amp;=f'
