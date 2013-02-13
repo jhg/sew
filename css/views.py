@@ -12,7 +12,7 @@ def css(request, fcss):
         for declaracion in selector.declaracioncss_set.all():
             declaraciones[declaracion.propiedad] = declaracion.valor
         reglas[selector.valor] = declaraciones
-    return render_to_response("css/base.htm",
+    return render_to_response("css/base.css",
       {
         'reglas': reglas,
       })
