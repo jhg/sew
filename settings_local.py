@@ -52,10 +52,10 @@ FIRST_DAY_OF_WEEK = 1
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'unique-snowflake'
+        'LOCATION': 'unique-snowflake',
         'TIMEOUT': 600,
         'OPTIONS': {
-            'MAX_ENTRIES': 1000
+            'MAX_ENTRIES': 1000,
         }
     }
 }
